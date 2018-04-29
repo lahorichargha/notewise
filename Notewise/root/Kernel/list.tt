@@ -1,0 +1,67 @@
+
+
+
+[% USE table_class = Class('Notewise::M::CDBI::Kernel') %]
+<table>
+    <tr>
+    
+    
+        
+        <th>created</th>
+    
+        
+        <th>source</th>
+    
+        
+        <th>lastviewed</th>
+    
+        
+        <th>lastmodified</th>
+    
+        
+        <th>name</th>
+    
+        
+        
+        <th>uri</th>
+    
+        <th/>
+    </tr>
+    [% FOR object = table_class.retrieve_all %]
+        <tr>
+        
+            
+            <td>[% object.created %]</td>
+        
+            
+            <td>[% object.source %]</td>
+        
+            
+            <td>[% object.lastviewed %]</td>
+        
+            
+            <td>[% object.lastmodified %]</td>
+        
+            
+            <td>[% object.name %]</td>
+        
+            
+            
+            <td>[% object.uri %]</td>
+        
+            <td>
+                <a href="[% base _ 'kernel/view/' _ object.id %]">
+                    View
+                </a>
+                <a href="[% base _ 'kernel/edit/' _ object.id %]">
+                    Edit
+
+                </a>
+                <a href="[% base _ 'kernel/destroy/' _ object.id %]">
+                    Destroy
+                </a>
+            </td>
+        </tr>
+    [% END %]
+</table>
+<a href="[% base _ 'kernel/add' %]">Add</a>

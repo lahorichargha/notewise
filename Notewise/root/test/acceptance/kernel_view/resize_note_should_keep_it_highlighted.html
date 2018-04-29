@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>resize_note_should_keep_it_highlighted</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">resize_note_should_keep_it_highlighted</td></tr>
+</thead><tbody>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/kernel/add?name=</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>viewkernel</td>
+	<td>100, 100</td>
+</tr>
+<tr>
+	<td>shiftKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='viewkernel']/div[contains(@class, 'note')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>//div[@id='viewkernel']/div[contains(@class, 'note')]//*[@class='notebody']</td>
+	<td>start_width</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>//div[@id='viewkernel']/div[contains(@class, 'note')]//*[@class='notebody']</td>
+	<td>start_height</td>
+</tr>
+<tr>
+	<td>mouseDownAt</td>
+	<td>//div[@id='viewkernel']/div[contains(@class, 'note')]//div[@class='corner']</td>
+	<td>2,2</td>
+</tr>
+<tr>
+	<td>dragAndDrop</td>
+	<td>//div[@id='viewkernel']/div[contains(@class, 'note')]//div[@class='corner']</td>
+	<td>+50,+200</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${start_width} + 50</td>
+	<td>expected_width</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${start_height} + 200</td>
+	<td>expected_height</td>
+</tr>
+<tr>
+	<td>verifyElementWidth</td>
+	<td>//div[@id='viewkernel']/div[contains(@class, 'note')]//*[@class='notebody']</td>
+	<td>${expected_width}</td>
+</tr>
+<tr>
+	<td>verifyElementHeight</td>
+	<td>//div[@id='viewkernel']/div[contains(@class, 'note')]//*[@class='notebody']</td>
+	<td>${expected_height}</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

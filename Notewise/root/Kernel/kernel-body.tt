@@ -1,0 +1,12 @@
+[% notes = kernel.notes %]
+[% vkernels = kernel.contained_objects %]
+
+[%- j = i + 1 %]
+[% IF j <= max_depth %]
+    [% FOR vkernel = vkernels %]
+        [%INCLUDE 'Kernel/kernel.tt' i=j%]
+    [% END %]
+    [% FOR note = notes %]
+        [%INCLUDE 'Kernel/note.tt' %]
+    [% END %]
+[% END %]

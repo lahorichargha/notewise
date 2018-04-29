@@ -1,0 +1,31 @@
+<script type="text/javascript" src="[%base%]js/bugs.js"></script>
+<script type="text/javascript" src="[%base%]js/prototype.js"></script>
+<style>
+    #summary {
+        width: 300px;
+        font-size: 12pt;
+        font-family: sans-serif;
+    }
+    textarea {
+        width: 300px;
+        height: 150px;
+        font-size: 12pt;
+        font-family: sans-serif;
+    }
+    td {
+        vertical-align: top;
+    }
+    h1 {
+        font-size: 16pt;
+    }
+    .error {
+        color: red;
+    }
+    body {
+        border: none;
+    }
+</style>
+<a href="#" onclick="Bugs.close_window()" style="float: right">Close</a>
+<b>Create Kernel</b> - Double click</br>
+<b>Create Note</b> - Shift-Click</br>
+<a href="/help" onclick="parent.location='/help'; return false;">More...</a>

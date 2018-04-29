@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script src="../../jsunit/app/jsUnitCore.js"></script>
+
+    <script type="text/javascript" src="../prototype.js"></script>
+    <script type="text/javascript" src="../jsdbi.js"></script>
+    <script type="text/javascript" src="../relationship.js"></script>
+  </head>
+
+  <body >
+    <div id="background">
+    </div>
+
+    <script>
+    function testHorizGetLineIntersect() {
+        var rect = new Rectangle(0,0,4,4);
+        var intersect = rect.getLineIntersect(new Array({x:2,y:2},{x:10,y:2}));
+        assertEquals('test x',4,intersect.x);
+        assertEquals('test y',2,intersect.y);
+    }
+
+    function testHorizGetLineIntersect2() {
+        var rect = new Rectangle(8,0,4,4);
+        var intersect = rect.getLineIntersect(new Array({x:2,y:2},{x:10,y:2}));
+        assertEquals('test x',8,intersect.x);
+        assertEquals('test y',2,intersect.y);
+    }
+
+    function testVertGetLineIntersect() {
+        var rect = new Rectangle(0,0,4,4);
+        var intersect = rect.getLineIntersect(new Array({x:2,y:2},{x:2,y:10}));
+        assertEquals('test x',2,intersect.x);
+        assertEquals('test y',4,intersect.y);
+    }
+    function testDiagGetLineIntersect() {
+        var rect = new Rectangle(0,0,4,4);
+        var intersect = rect.getLineIntersect(new Array({x:2,y:2},{x:4,y:6}));
+        assertEquals('test x',3,intersect.x);
+        assertEquals('test y',4,intersect.y);
+    }
+
+    function testDiagGetLineIntersect2() {
+        var rect = new Rectangle(2,2,4,4);
+        var intersect = rect.getLineIntersect(new Array({x:0,y:0},{x:4,y:4}));
+        assertEquals('test x',2,intersect.x);
+        assertEquals('test y',2,intersect.y);
+    }
+
+    function tearDown() {
+        // TODO delete vkernel here
+    }
+    </script>
+</body>
+</html>

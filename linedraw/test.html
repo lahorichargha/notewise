@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <style>
+            .target: {
+                border: 1px solid black;
+                width: 800px;
+                height: 800px;
+            }
+        </style>
+        <script type="text/javascript" src="prototype.js"></script>
+        <script type="text/javascript" src="linedraw.js"></script>
+    </head>
+    <body>
+        <div id="target">
+        </div>
+        <script>
+            var line = new LineDraw.Line($(target),0,0,400,400);
+            alert('moving p1 to 100,10');
+            line.setP1(100,10);
+            alert('moving p1 to 100,200');
+            line.setP1(100,200);
+            alert('moving p2 to 400,0');
+            line.setP2(400,0);
+        </script>
+    </body>
+</html>

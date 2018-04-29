@@ -1,0 +1,24 @@
+# The name of the application
+name: Notewise
+V::TT:
+    # display template rendering timing information in the html
+    TIMER: 0
+# Show debug output in the server logs
+Debug: 1
+# Use the original version of javascript files, rather than the compiled
+# version
+debug_js: 1
+# Serve static files from within catalyst.  This should only be off in
+# production, when apache handles it.
+Static: 1
+# Google analytics account id
+#AnalyticsId: UA-1111111-1
+# Database connection info
+M::DBIC:
+    schema_class: Notewise::SchemaLoader::DBIC
+    connect_info:
+        - dbi:mysql:dbname=notewise_beta
+        - root
+        - ''
+# The base url is the root of the application.  If this isn't set, it assumes the base is /
+BaseUrl:

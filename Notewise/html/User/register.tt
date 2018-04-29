@@ -1,0 +1,53 @@
+<html>
+<head>
+    <style>
+        input {
+            border: 1px solid black;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+    <script type="text/javascript" src="[%base%]js/prototype.js"></script>
+    <script type="text/javascript" src="[%base%]js/bugs.js"></script>
+</head>
+<body>
+    <p>By registering, all your information will be saved permanently.</p>
+    <p class="error">[%message%]</p>
+    <form method="POST" action="[% c.uri_for('/user/do_register') %]">
+        <table>
+        <tr>
+            <td>Username:</td>
+            <td><input name="username"/></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input name="email"/></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input name="password" type="password"/></td>
+        </tr>
+        <tr>
+            <td>Password again:</td>
+            <td><input name="password2" type="password"/></td>
+        </tr>
+    </table><br/>
+    <input type="submit" value="Register"/>
+    <input type="button" value="Cancel" onclick="Bugs.close_window()"/>
+    </form>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    [% IF c.config.AnalyticsId %]
+        <script type="text/javascript">
+            var pageTracker = _gat._getTracker("UA-4835321-1");
+            pageTracker._setDomainName("notewise.com");
+            pageTracker._initData();
+            pageTracker._trackPageview();
+        </script>
+    [% END %]
+</body>
+</html>

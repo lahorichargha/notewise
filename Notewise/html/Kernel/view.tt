@@ -1,0 +1,214 @@
+[% max_depth=2 %]
+[% thumbnail_start_depth=1 %]
+<html>
+<head>
+    <title>Notewise.com</title>
+    <link rel="stylesheet" type="text/css" href="[%base%]style.css"/>
+    <link rel="icon" href="[%base%]images/favicon.ico" />
+    <link rel="shortcut icon" href="[%base%]images/favicon.ico" />
+</head>
+<body class="kernelview">
+<div id="mysearchresults" class="searchresults" style="display: none"></div>
+    <table class="interface" cellspacing=0 cellpadding=0 border=0>
+        <tr>
+            <td class="header" colspan=3>
+                <div class="header">
+                    <div class="headerleft">
+                        <a href="/"><div class="logo"></div></a>
+                        <div class="search">
+                            Search: <input autocomplete="off" id="mysearchfield" onfocus="this.className = 'focus';" onblur="this.className='';" name="s" /><br/>
+                            <div id="searchindicator" style="display: none">Searching...</div>
+                        </div>
+                    </div>
+                    <div class="links">
+                        <a href="/[% c.user.user.username %]">home</a>
+                        <span class="dot">&nbsp;</span>
+                        <a href="[%c.uri_for('/user/settings')%]">settings</a>
+                        <span class="dot">&nbsp;</span>
+                        <a href="" onclick="Bugs.show_window('/help/quick'); return false;">help</a>
+                        <span class="dot">&nbsp;</span>
+                        <a href="" onclick="Bugs.show_window('/user/bug_report'); return false;">report bug</a>
+                        <span class="dot">&nbsp;</span>
+                        <a href="http://community.notewise.com">community</a>
+                        <span class="dot">&nbsp;</span>
+                        <a href="[%c.uri_for('/logout')%]">logout</a>
+                    </div>
+                    [% IF c.user.user.user_type.name == 'tutorial_user'%]
+                    <a href="[% c.uri_for('/user/start_trial')%]" id="start_using_notewise"><img src="/images/start_using_notewise.png"></a>
+                    [% END%]
+                    [% IF c.user.user.user_type.name == 'unregistered_trial_user'%]
+                        <a href="" id="register" onclick="Bugs.show_window('/user/register'); return false;"><img src="/images/register.png"></a>
+                    [% END%]
+                    <div class="tab">
+                        <div id='saving_indicator' style="display: none">Saving...</div>
+                        <input type="text" id="viewname" class="namefield" autocomplete="off"
+                               value="Loading..."
+                               style="width: 6.5em;"/>
+                        <div class="tablinks">
+                            <a href="javascript:new_view();">new view</a><br/>
+                            <a href="#" onclick="$('viewname').focus(); return false;">rename</a><br/>
+                            <a href="#" onclick="show_confirm_delete(); return false;">delete</a>
+                        </div>
+                        <div class="left"></div>
+                        <div class="mid"></div>
+                        <div class="right"></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="body" valign="top">
+                <div id="sidebar">
+                    <table class="sidebar" cellpadding="0" cellspacing="0" border="0">
+                        <tr><td>
+                            <div class="sidebar">
+                                <div class="top-sidebar-header">
+                                    <div class="left"></div>
+                                    <div class="mid"></div>
+                                    <div class="right"></div>
+                                    <div class="spinner" onmousedown="expandMenu(this, 'parents_content');"></div>
+                                    <div class="label">parents</div>
+                                </div>
+                            <div class="sidebar-content open" id="parents_content">
+                                Loading...
+                            </div>
+                            <!--
+                            <div class="sidebar-header">
+                                <div class="spinner" onmousedown="expandMenu(this, 'rel_content');"></div>
+                                <div class="label">relationships</div>
+                            </div>
+                            <div class="sidebar-content open" id="rel_content">
+                            </div> -->
+                            <div class="sidebar-header">
+                                <div class="label">sandbox</div>
+                            </div>
+                        </td></tr>
+                        <tr id="sidebar-bottom" class="sidebar-bottom" style="height: 100%"><td style="height: 100%" valign="top">
+                            <div id="sandbox">Loading...</div>
+                        </td></tr>
+                    </table>
+                    <div class="bottomleft"></div>
+                    <div class="bottomright"></div>
+                </div>
+                <div class="content">
+                    <div class="canvas" id="viewkernel">
+                    </div>
+                    <div class="topleft"></div>
+                    <div class="bottomleft"></div>
+                    <div class="bottomright"></div>
+                </div>
+            </td>
+        </tr>
+        <tr id="footer">
+            <td></td>
+        </tr>
+    </table>
+    [% IF c.config.debug_js %]
+        <script type="text/javascript" src="[%base%]js/ui.js"></script>
+        <script type="text/javascript" src="[%base%]js/wz_jsgraphics.js"></script>
+        <script type="text/javascript" src="[%base%]js/prototype.js"></script>
+        <script type="text/javascript" src="[%base%]js/dragndrop.js"></script>
+        <script type="text/javascript" src="[%base%]js/jsdbi.js"></script>
+        <script>
+            if(!JSDBI){
+                alert("Couldn't load JSDBI");
+            }
+        </script>
+        <script type="text/javascript" src="[%base%]js/utils.js"></script>
+        <script type="text/javascript" src="[%base%]js/linedraw.js"></script>
+        <script type="text/javascript" src="[%base%]js/visiblekernelmodel.js"></script>
+        <script type="text/javascript" src="[%base%]js/new_relationship.js"></script>
+        <script type="text/javascript" src="[%base%]js/wiseobject.js"></script>
+        <script type="text/javascript" src="[%base%]js/relationship.js"></script>
+        <script type="text/javascript" src="[%base%]js/expandingtextfield.js"></script>
+        <script type="text/javascript" src="[%base%]js/kernelobject.js"></script>
+        <script type="text/javascript" src="[%base%]js/kernelbody.js"></script>
+        <script type="text/javascript" src="[%base%]js/visiblekernelcontroller.js"></script>
+        <script type="text/javascript" src="[%base%]js/viewkernel.js"></script>
+        <script type="text/javascript" src="[%base%]js/kernelthumbnail.js"></script>
+        <script type="text/javascript" src="[%base%]js/kernel.js"></script>
+        <script type="text/javascript" src="[%base%]js/note.js"></script>
+        <script type="text/javascript" src="[%base%]js/controls.js"></script>
+        <script type="text/javascript" src="[%base%]js/effects.js"></script>
+        <script type="text/javascript" src="[%base%]js/bugs.js"></script>
+        <script type="text/javascript" src="[%base%]js/quicksearch.js"></script>
+        <script type="text/javascript" src="[%base%]js/sandbox.js"></script>
+        <script type="text/javascript" src="[%base%]js/dhtmlHistory.js"></script>
+    [% ELSE %]
+        <script type="text/javascript" src="[%base%]js/javascript-min.js"></script>
+    [% END %]
+
+    [% IF c.config.AnalyticsId %]
+        <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+            var pageTracker = _gat._getTracker("[% c.config.AnalyticsId %]");
+            pageTracker._setDomainName("notewise.com");
+            pageTracker._initData();
+        </script>
+    [% END %]
+
+    <script>
+        // configure the base url for jsdbi
+        JSDBI.base_url('[% base %]');
+        base_url = '[% base %]';
+        // XXX this is pretty nasty - put this inside the view's vkernel instead
+        var objectCache = {};
+
+        dhtmlHistory.initialize();
+        var kernel_id = dhtmlHistory.getCurrentLocation();
+
+        var viewKernelId;
+        if(kernel_id > 0){
+            viewKernelId = kernel_id;
+        } else {
+            viewKernelId = [%lastviewed.get_column('object_id')%];
+        }
+        var view = null;
+        ViewKernel.makeView(viewKernelId);
+
+        // prevent calling the listener on a page reload
+        dhtmlHistory.fireOnNewListener = false;
+        dhtmlHistory.addListener(function(location,data){
+            var parts = location.split(':');
+            var kernel_id = parseInt(parts[0]);
+            if(kernel_id > 0){
+                ViewKernel.doMakeView(kernel_id);
+            }
+        });
+
+
+        function show_confirm_delete(){
+            var div = document.createElement('div');
+            div.id = 'permanent_delete';
+            div.innerHTML = "Permanently delete this kernel? <a href='javascript:view.destroy();hide_confirm_delete();'>yes</a> <a href='javascript:hide_confirm_delete()'>no</a>";
+            var body=document.getElementsByTagName('body')[0];
+            body.appendChild(div);
+        };
+
+        function hide_confirm_delete() {
+            var div = $('permanent_delete');
+            div.parentNode.removeChild(div);
+        }
+
+        [% UNLESS c.config.noprecache %]
+            // Delay image caching until after other things have a chance to
+            // render.
+            window.setTimeout(do_image_precache, 5);
+        [% END %]
+
+        window.setTimeout(function () {new Ajax.Updater('sandbox',
+                         '[% c.uri_for('/user/sandbox') %]',
+                         {
+                             evalScripts: 1,
+                             method: 'get',
+                             asynchronous: true
+                         });}, 100);
+
+        var sandbox = new Sandbox($('sandbox'),[%sandbox.id%]);
+        var user_type = "[% user_type %]";
+    </script>
+</body>
+</html>

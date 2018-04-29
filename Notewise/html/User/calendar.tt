@@ -1,0 +1,10 @@
+[% INCLUDE 'header.tt' title=(c.user.user.username _ "'s Calendar - Notewise.com") %]
+
+[% FOREACH date = dates %]
+    <p>[% date %]:</p>
+    <ul>
+    [% FOREACH kernel = kernels.$date %]
+        <li><a href="[%base _ kernel.relative_url%]">[%kernel.name != '' ? kernel.name : 'unnamed'%]</a></li>
+    [% END %]
+    </ul>
+[% END %]

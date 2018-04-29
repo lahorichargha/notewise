@@ -1,0 +1,32 @@
+[% INCLUDE 'Admin/header.tt' %]
+
+<p>[%message%]</p>
+<form action="[% base _ 'admin/account/do_add' %]" method="post">
+    <table border=0 cellpadding=0 cellspacing=0>
+        <tr>
+            <td>Username</td>
+            <td><input name="username" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td><input name="name" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input name="email" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input name="password" type="password" /></td>
+        </tr>
+        <tr>
+            <td>Confirm Password</td>
+            <td><input name="confirm_password" type="password" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Add"/>
+<form/>
+<br/>
+<a href="[% base _ 'admin/account/list' %]">List</a>
+
+[% INCLUDE 'Admin/footer.tt' %]

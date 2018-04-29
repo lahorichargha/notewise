@@ -1,0 +1,14 @@
+# Notewise Search Plugin
+# scotty@notewise.com
+
+<search
+   name="Notewise"
+   description="Notewise" 
+   action="[%base%]search"
+   searchForm="[%base%]search"
+   method="GET" >
+
+<input name="sourceid" value="Mozilla-search">
+<input name="s" user >
+
+</search>

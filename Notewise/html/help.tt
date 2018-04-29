@@ -1,0 +1,35 @@
+[% INCLUDE 'header.tt' %]
+<script type="text/javascript">
+<!--
+function errorMsg(){
+  alert("Netscape 6 or Mozilla is needed to install a sherlock plugin");
+}
+
+function addEngine(name,ext,cat,type){
+  if ((typeof window.sidebar == "object") && (typeof
+  window.sidebar.addSearchEngine == "function"))
+  {
+    //cat="Web";
+    //cat=prompt('In what category should this engine be installed?','Web')
+    window.sidebar.addSearchEngine(
+      "[%base%]plugins/"+name+".src",
+      "[%base%]plugins/"+name+"."+ext,
+      name,
+      cat );
+  }
+  else
+  {
+    errorMsg();
+  }
+}
+//-->
+</script>
+
+<h1>Browser support</h1>
+<ul>
+    <li><a href="javascript:addEngine('notewise','png','General','0')">Firefox Search Plugin</a></li>
+</ul>
+
+
+</body>
+</html>

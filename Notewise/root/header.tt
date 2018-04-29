@@ -1,0 +1,11 @@
+[% INCLUDE '_header.tt' %]
+        <div class="search">
+            Search: <input autocomplete="off" id="mysearchfield" onfocus="this.className = 'focus';" onblur="this.className='';" name="s" />
+            <a href="[%base%]kernel/add?name=">new view</a>
+            <script type="text/javascript" src="[%base%]js/quicksearch-urls.js"></script>
+            <script>
+                base_url = '[% base %]';
+                $('mysearchfield').focus();
+            </script>
+        </div>
+    </div>

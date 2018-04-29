@@ -1,0 +1,49 @@
+
+
+<p>[%message%]</p>
+<form action="[% base _ 'kernel/do_edit/' _ item.id %]"
+    method="post">
+    <table border=0 cellpadding=0 cellspacing=0>
+    
+        
+        <tr>
+            <td>created</td>
+            <td>[% item.to_field('created').as_XML %]</td>
+        </tr>
+    
+        
+        <tr>
+            <td>source</td>
+            <td>[% item.to_field('source').as_XML %]</td>
+        </tr>
+    
+        
+        <tr>
+            <td>lastviewed</td>
+            <td>[% item.to_field('lastviewed').as_XML %]</td>
+        </tr>
+    
+        
+        <tr>
+            <td>lastmodified</td>
+            <td>[% item.to_field('lastmodified').as_XML %]</td>
+        </tr>
+    
+        
+        <tr>
+            <td>name</td>
+            <td>[% item.to_field('name').as_XML %]</td>
+        </tr>
+    
+        
+        
+        <tr>
+            <td>uri</td>
+            <td>[% item.to_field('uri').as_XML %]</td>
+        </tr>
+    
+    </table>
+    <input type="submit" value="Edit"/>
+<form/>
+<br/>
+<a href="[% base _ 'kernel/list' %]">List</a>

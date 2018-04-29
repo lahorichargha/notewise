@@ -1,0 +1,21 @@
+/* Internet Explorer Fixes */
+
+#tabbar #logo {
+	background: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/logomini_nobg.png");	
+
+	margin-top: 0.4em;
+}
+
+#content_tabs ul li a {
+	border-bottom: none;
+	text-decoration: underline;
+}
+
+#content_tabs ul li a:hover {
+	border-bottom: none;
+	text-decoration: underline;
+	color: #666;
+}
+
+#tabbar a { height: 1em; }	

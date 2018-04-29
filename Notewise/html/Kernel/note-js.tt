@@ -1,0 +1,17 @@
+[% id = note.id %]
+[% PERL %]
+    $stash->{content} =~ s/\n/\\n/g;
+[% END %]
+[% content = content.replace('"', '\"'); %]
+
+var noteDiv = document.getElementById('note[%id%]');
+var noteObj = new Note([%id%],[% note.container_object.id %],
+                    noteDiv,
+                    [%note.x%],
+                    [%note.y%],
+                    [%note.width%],
+                    [%note.height%],
+                    "[% content %]");
+                    
+noteObj.layout();
+objectCache['[%note.get_column('container_object')%]/[%note.get_column('object_id')%]']=noteObj;

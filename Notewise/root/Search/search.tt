@@ -1,0 +1,73 @@
+[% INCLUDE 'search-header.tt' bodyclass='search'%]
+    <div class="resultsbar">
+        Results <b>[%start_index%]-[%end_index%]</b> of <b>[%count%]</b> results for <b>[%c.req.params.s%]</b>
+    </div>
+    <div class="searchresultslist">
+        <p><a href="http://beta.notewise.com/kernel/add?name=[%c.req.params.s%]">new '[%c.req.params.s%]'</a></p>
+        [%- search = c.req.params.s -%]
+        [%- FOR object = results -%]
+            [%- PERL %]
+                $stash->set(type=>ref $stash->get('object'));
+            [%-END-%]
+            [%- IF type.match('Kernel$') -%]
+                [%- PERL %]
+                    my $search = $stash->get('search');
+                    my $object = $stash->get('object');
+                    if($object->name =~ /$search/i){
+                        $stash->set(prematch=>$`);
+                        $stash->set(match=>$&);
+                        $stash->set(postmatch=>$');
+                    }
+                [% END -%]
+                <p>
+                    <a href="[%base _ object.relative_url%]">[%prematch%]<b>[%match%]</b>[%postmatch%]</a><br/>
+                    [% parents = [ ] %]
+                    [% FOR parent = object.parents %]
+                        [% parent_name = parent.name.defined ? parent.name : 'unnamed' %]
+                        [% parent_link = '<a href="' _ base _ parent.relative_url _ '">' _ parent_name _ '</a>'%]
+                        [% parents.push(parent_link) %]
+                    [% END %]
+                    <span class="parents">Parents: [% parents.join(', ') %]</span>
+                </p>
+            [%- END -%]
+            [%- IF type.match('Note$') -%]
+                [%- PERL %]
+                    my $search = $stash->get('search');
+                    my $object = $stash->get('object');
+                    if($object->content =~ /$search/i){
+                        $stash->set(prematch=>substr($`,-10));
+                        $stash->set(match=>$&);
+                        $stash->set(postmatch=>substr($',0,10));
+                    }
+                [% END -%]
+                <p><a href="[%base _ object.kernel.relative_url%]">
+                    [%-object.kernel.name%] : ([%prematch%]<b>[%match%]</b>[%postmatch-%])
+                </a></p>
+            [%- END -%]
+        [%- END -%]
+    </div>
+    <div class="pagenumbers">
+        <b>Results Page:</b><br/>
+        [% IF current_page > 1 %]
+            <a href="?s=[%c.req.params.s%]&start=[% (current_page - 2) * amount + 1%]&count=[%amount%]">&lt;</a>
+        [% END %]
+        [% FOR i = pages%]
+            [% IF i == current_page %]
+                [% i %]
+            [% ELSE %]
+                <a href="?s=[%c.req.params.s%]&start=[% (i - 1) * amount + 1%]&count=[%amount%]">[% i %]</a>
+            [% END %]
+        [% END %]
+        [% IF current_page < pages.size %]
+            <a href="?s=[%c.req.params.s%]&start=[% current_page * amount + 1%]&count=[%amount%]"><image style="border: none;" src="/images/sidebar-spinner-horiz.png"/></a>
+        [% END %]
+        <br/>
+        <br/>
+        <form>
+            Search:
+            <input name="s" value="[%c.req.params.s%]"/>&nbsp;&nbsp;
+            <input type="submit" value="Search"/>
+        </form>
+    </div>
+</body>
+</html>

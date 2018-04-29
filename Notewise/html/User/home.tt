@@ -1,0 +1,16 @@
+[% INCLUDE 'header.tt' title=(c.user.user.username _ ' - Notewise.com') %]
+
+Last [%lastviewed.size%] viewed kernels (<a href="/user/calendar/viewed">more</a>):
+
+<ul>
+[% FOR kernel = lastviewed %]
+<li><a href="[%base _ kernel.relative_url%]">[%kernel.name != '' ? kernel.name : 'unnamed'%]</a></li>
+[% END %]
+</ul>
+
+Most recently created [%lastcreated.size%] kernels (<a href="/user/calendar/created">more</a>):
+<ul>
+[% FOR kernel = lastcreated %]
+<li><a href="[%base _ kernel.relative_url%]">[%kernel.name != '' ? kernel.name : 'unnamed'%]</a></li>
+[% END %]
+</ul>

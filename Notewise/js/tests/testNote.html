@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <script src="../../jsunit/app/jsUnitCore.js"></script>
+    <script src="../prototype.js"></script>
+    <script src="../test_utils.js"></script>
+    <script src="../jsdbi.js"></script>
+    <script src="../utils.js"></script>
+    <script src="../dragndrop.js"></script>
+    <script src="../wiseobject.js"></script>
+    <script src="../kernel.js"></script>
+    <script src="../note.js"></script>
+  </head>
+  <body>
+    <script>
+      var objectCache = {};
+      Ajax.Request = AjaxRequestStub;
+      function setUp() {
+        AjaxRequestStub.clear();
+        objectCache = {};
+      }
+
+      function testHtmlIdShouldBeEmptyBeforeInsertCompletes() {
+        var note = new Note;
+        note.model().container_object(this.kernel);
+        note.content('');
+        note.create();
+        note.realize($('kernelbody'));
+        assertEquals("", note.htmlElement.id);
+      }
+
+      function testCreateNoteShouldSetHtmlIdProperly() {
+        var note = new Note;
+        note.model().container_object(this.kernel);
+        note.content('');
+        note.create();
+
+        var request = AjaxRequestStub.requests[0];
+        request.setResponseXML('<response><note id="123"></note></response>');
+        request.fireOnSuccess();
+
+        note.realize($('kernelbody'));
+        assertEquals("note123", note.htmlElement.id);
+      }
+
+      function testCreateNoteRealizeCalledBeforeInsertCompletesShouldSetHtmlIdProperly() {
+        var note = new Note;
+        note.model().container_object(this.kernel);
+        note.content('');
+        note.create();
+        note.realize($('kernelbody'));
+
+        var request = AjaxRequestStub.requests[0];
+        request.setResponseXML('<response><note id="123"></note></response>');
+        request.fireOnSuccess();
+
+        assertEquals("note123", note.htmlElement.id);
+      }
+    </script>
+    <div id=kernelbody>
+    </div>
+  </body>
+</html>

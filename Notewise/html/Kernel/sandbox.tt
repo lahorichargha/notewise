@@ -1,0 +1,19 @@
+[% max_depth=1 %]
+[% FOR vkernel = kernels %]
+    [%INCLUDE 'Kernel/kernel.tt' i=0 %]
+[%END%]
+[% FOR note = notes %]
+    [%INCLUDE 'Kernel/note.tt' i=0 %]
+[%END%]
+    <script>
+        [% FOR vkernel = kernels %]
+            [% i = 0 %]
+            [%INCLUDE 'Kernel/kernel-js.tt'%]
+        [%END%]
+        [% FOR note = notes %]
+            [% i = 0 %]
+            [%INCLUDE 'Kernel/note-js.tt'%]
+        [%END%]
+    </script>
+</body>
+</html>

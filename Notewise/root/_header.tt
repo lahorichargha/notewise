@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>[% title || 'Notewise.com' %]</title>
+    <link rel="stylesheet" type="text/css" href="[%base%]style.css"/>
+    <link rel="icon" href="[%base%]images/favicon.ico" />
+    <link rel="shortcut icon" href="[%base%]images/favicon.ico" />
+    <style>
+        div.header {
+            height: 70px;
+        }
+        h1 {
+            font-size: 130%;
+        }
+    </style>
+</head>
+<body class="[%bodyclass%]">
+    <div id="mysearchresults" class="searchresults" style="display: none"></div>
+    <script type="text/javascript" src="[%base%]js/prototype.js"></script>
+    <script type="text/javascript" src="[%base%]js/utils.js"></script>
+    <script type="text/javascript" src="[%base%]js/controls.js"></script>
+    <script type="text/javascript" src="[%base%]js/effects.js"></script>
+    <div class="header">
+        <a href="/"><div class="logo"></div></a>
+        <div class="links">
+            <a href="/[% c.user.user.username %]">home</a>
+            <span class="dot">&nbsp;</span>
+            <a href="/user/calendar">calendar</a>
+            <span class="dot">&nbsp;</span>
+            <a href="[%c.uri_for('/user/settings')%]">settings</a>
+            <span class="dot">&nbsp;</span>
+            <a href="[%c.uri_for('/help')%]">help</a>
+            <span class="dot">&nbsp;</span>
+            <a href="http://community.notewise.com">community</a>
+            <span class="dot">&nbsp;</span>
+            <a href="[%c.uri_for('/logout')%]">logout</a>
+        </div>

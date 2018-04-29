@@ -1,0 +1,142 @@
+Notewise REST API documentation
+
+The Notewise REST api is built around the REST methedology.  You can find more about REST at http://www.xfront.com/REST-Web-Services.html.
+
+* Status codes *
+
+Status about the success or failure of the requested action will be returned via the HTTP response code.  We use the following status codes:
+
+200 - Ok - no errors were encountered, and the task was successfully performed
+201 - Created - this is only given during a PUT, and signifies that the
+resource was correctly created
+400 - Bad request - There was a problem with the way you specified your
+request.  Make sure you are passing in all necessary information, and that the
+request is properly structured.
+403 - Forbidden - You do not have access to do what you were trying to do
+404 - Not found - The object you referenced doesn't exist on the server
+500 - Internal error - something went wrong in the server code.  Please report
+this to a server admin.
+
+* Authentication *
+
+To authenticate, you can pass any url the additional cgi parameters 'email',
+and 'password'.  The response will contain a cookie, which you may optionally
+use to authenticate during the rest of your session.  You may also continue to
+pass 'email' and 'password' for each request.
+
+(http://home.scottyallen.com:3003/rest/kernel/1?email=scotty@scottyallen.com&password=password)
+
+* Interacting with objects *
+
+All objects in the system have their own urls.  To interact with an object, make http requests to its url.  The standard four actions are:
+
+Create a new object - Send a PUT with the attributes of the objects as cgi paramters to the base url for that object type (ie, http://notewise.com/rest/kernel).
+Retrieve an existing object - Send a GET to the object's url.  It will return an xml document of the form:
+        <response>
+            [object specific xml...]
+        </response>
+    See below for the xml document format for specific object types.
+Update an existing object - Send a POST request to the object's url, with the attributes you'd like to change as cgi paramters.
+Delete an existing object - Send a DELETE request to the object's url.
+
+* Objects *
+
+Note that the order of attributes in the xml is not guarunteed
+
+Kernel
+
+Sample xml:
+    <kernel id="123"
+            name="foobar"
+            created="2005-11-18 06:43:09"
+            lastModified="2005-11-17 23:43:09"
+            source="http://yahoo.com"
+            uri="http://en.wikipedia.org/wiki/Foobar"
+            object_url="http://notewise.com/fred/foobar/123">
+        <containedObjects>
+            [xml for visible kernel and note objects...]
+        </containedObjects>
+    </kernel>
+
+Things that the user can set (all are optional):
+- name
+- source
+- uri
+
+Note
+
+Sample xml:
+    <note id="880"
+          container_object="878"
+          created="2005-01-01 01:02:03"
+          h="20"
+          lastModified="2005-02-02 03:04:05"
+          source="myuri"
+          w="30"
+          x="40"
+          y="20">a test note
+    a new line</note>
+
+Things that the user can set (things with * are required):
+- container_object *
+- w
+- h
+- x
+- y
+- source
+- content
+
+Relationship
+
+Sample xml:
+<relationship id="1000"
+              nav="fromleft"
+              part1="998"
+              part2="999"
+              type="shot"/>
+
+Things that the user can set (things with * are required):
+- nav * (can be 'bi','non','fromleft','fromright')
+- part1 *
+- part2 *
+- type (this is the label on the relationship)
+
+VKernel
+
+Sample xml:
+<visiblekernel collapsed="1"
+               contained_object="1096"
+               container_object="948"
+               height="30"
+               width="19.7002"
+               x="33.94"
+               y="17.4367">
+    <kernel name="This is a test"
+            created="2005-12-18 18:44:33"
+            id="1096"
+            lastModified="2005-12-18 11:44:40"
+            source=""
+            uri=""
+            user="210"/>
+</visiblekernel>
+
+Things that the user can set (things with * are required):
+- contained_object *
+- container_object *
+- height * (only used when not collapsed
+- width * (only used when not collapsed
+- x *
+- y *
+- collapsed * (0/1 == false/true)
+
+* Search *
+
+To search for notes or kernels, send a GET of the form
+http://notewise.com/rest/search/mysearchstring replacing "mysearchstring" with
+your desired search string.  This will search for any kernels or notes
+containing words that start with the given search string.  The response will
+be of the form:
+
+<response>
+    [kernel and note xml...]
+</response>

@@ -1,0 +1,46 @@
+<script type="text/javascript" src="[%base%]js/bugs.js"></script>
+<script type="text/javascript" src="[%base%]js/prototype.js"></script>
+<style>
+    #summary {
+        width: 300px;
+        font-size: 12pt;
+        font-family: sans-serif;
+    }
+    textarea {
+        width: 300px;
+        height: 150px;
+        font-size: 12pt;
+        font-family: sans-serif;
+    }
+    td {
+        vertical-align: top;
+    }
+    h1 {
+        font-size: 16pt;
+    }
+    .error {
+        color: red;
+    }
+    body {
+        border: none;
+    }
+</style>
+<a href="#" onclick="Bugs.close_window()" style="float: right">Close</a>
+<h1>Report an issue</h1>
+<p class="error">[%message%]</p>
+<form action="[%c.uri_for('do_bug_report')%]" method="POST">
+    <table>
+        <tr>
+            <td>Summary:</td>
+            <td><input name="summary" id="summary" value="[%c.req.params.summary%]"/></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><textarea name="description" value="[%c.req.params.description%]"></textarea></td>
+        </tr>
+    </table>
+    <input type="submit" value="Send"/>
+    <script>
+        document.getElementById('summary').focus();
+    </script>
+</form>

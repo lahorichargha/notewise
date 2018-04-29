@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script src="../../jsunit/app/jsUnitCore.js"></script>
+    <script src="../prototype.js"></script>
+    <script src="../utils.js"></script>
+    <script src="../test_utils.js"></script>
+    <script src="../jsdbi.js"></script>
+  </head>
+  <body>
+    <script>
+      var originalConsole;
+      var debugArgs;
+
+      function setUp() {
+        originalConsole = window.console;
+        window.console = {};
+        window.console.debug = function() {
+          debugArgs = arguments;
+        };
+      }
+
+      function tearDown() {
+        window.console = originalConsole;
+      }
+
+      function testLog() {
+        log(1, 2, 3);
+        assertEquals(1, debugArgs[0]);
+        assertEquals(2, debugArgs[1]);
+        assertEquals(3, debugArgs[2]);
+      }
+
+      function testLogNoConsole() {
+        delete window.console;
+        log(1, 2, 3);
+        assertUndefined(debugArgs);
+      }
+    </script>
+  </body>
+</html>

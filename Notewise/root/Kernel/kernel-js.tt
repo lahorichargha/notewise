@@ -1,0 +1,16 @@
+[% id = vkernel.get_column('container_object') _ '/' _ vkernel.get_column('contained_object') %]
+    var kernelDiv = document.getElementById('vkernel[%id%]');
+    var vkernel = new VisibleKernelController([%vkernel.get_column('container_object')%],
+                                    [%vkernel.get_column('contained_object')%],
+                                    kernelDiv,
+                                    [%vkernel.x%],
+                                    [%vkernel.y%],
+                                    [%vkernel.width%],
+                                    [%vkernel.height%],
+                                    [%vkernel.collapsed%]
+                                    );
+    vkernel.layout();
+    objectCache['[%id%]']=vkernel;
+[% UNLESS vkernel.collapsed %]
+    [% INCLUDE 'Kernel/kernel-innerjs.tt' kernel=vkernel.contained_kernel%]
+[% END %]

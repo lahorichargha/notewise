@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+ "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+	<head> 
+		<title>SplitPane test</title> 
+		<script type="text/javascript" src="prototype.js"></script>
+		<script type="text/javascript" src="dragndrop.js"></script>
+		<script type="text/javascript" src="utils.js"></script>
+		<script type="text/javascript" src="splitpane.js"></script>
+		<style type="text/css">
+			.dragBar {
+				margin: 0; padding: 0;
+				line-height: 15px;
+				font-size: 12px;
+				height: 15px; width: 100%;
+				background-color: #BDB76B;
+				position: absolute;
+			}
+			
+			.pane {
+				margin: 0; padding: 0;
+				position: absolute; width: 100%;
+			}
+			
+			.selected {
+				background-color: #ff0;
+			}
+			
+			.dragging {
+				background-color: #0ff;
+			}
+			
+			#splitpane {
+				position: absolute;
+				margin: 0; padding: 0;
+				height: 100%; width: 200px;
+				top: 0; left: 0; background-color: #fc0;
+			}
+			
+			body {
+				margin: 0; padding: 0;
+				width: 100%; height: 100%;
+			}
+			
+			div {
+				margin: 0; padding: 0;
+			}
+		</style>
+	</head> 
+	<body> 
+		<div id="splitpane"></div>
+		<div id="pane0" class="pane" style="background-color: #f00;" ></div>
+		<div id="pane1" class="pane" style="background-color: #0f0;" ></div>
+		<div id="pane2" class="pane" style="background-color: #00f;" ></div>
+		<div id="pane3" class="pane" style="background-color: #ff0;" ></div>
+		<script type="text/javascript">
+			var sp = new SplitPane("splitpane");
+			sp.addPane("pane0", "properties");
+			sp.addPane("pane1", "in the context of...");
+			sp.addPane("pane2", "related to...");
+			sp.addPane("pane3", "sandbox");
+		</script>
+	</body> 
+</html>

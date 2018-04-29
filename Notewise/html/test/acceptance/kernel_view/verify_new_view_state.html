@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>verify_new_view_state</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">verify_new_view_state</td></tr>
+</thead><tbody>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=new view</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>window.document.getElementById('mysearchfield').className</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>viewname</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>mysearchfield</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertXpathCount</td>
+	<td>//*[@id=&quot;parents_content&quot;]/*</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>- Notewise.com</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,45 @@
+[% INCLUDE 'Admin/header.tt' %]
+
+<p>[%message%]</p>
+<form action="[% base _ 'admin/account/do_edit/' _ item.id %]"
+    method="post">
+    <table border=0 cellpadding=0 cellspacing=0>
+        <tr>
+            <td>Username</td>
+            <td>[% item.to_field('username').as_XML %]</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>[% item.to_field('name').as_XML %]</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>[% item.to_field('email').as_XML %]</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>
+                <select name='user_type'>
+                    [% FOR user_type = user_types %]
+                    <option value='[%user_type.id%]' [%IF user_type.id == item.user_type%]selected[%END%]>
+                        [%user_type.name | replace('_',' ')%] - [%user_type.description%]
+                    </option>
+                    [% END %]
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input name="password" type="password"></td>
+        </tr>
+        <tr>
+            <td>Confirm Password</td>
+            <td><input name="confirm_password" type="password" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Edit"/>
+<form/>
+<br/>
+<a href="[% base _ 'admin/account/list' %]">List</a>
+
+[% INCLUDE 'Admin/footer.tt' %]

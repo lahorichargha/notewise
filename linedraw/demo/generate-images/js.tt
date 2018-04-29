@@ -1,0 +1,56 @@
+[% already = 0 %]
+    update: function(){
+        var w = Math.abs(this.x1-this.x2);
+        var h = Math.abs(this.y2-this.y1);
+        var x = Math.min(this.x1,this.x2);
+        var y = Math.min(this.y1,this.y2);
+        var direction;
+        if( (this.x2 > this.x1 && this.y2 < this.y1)
+            || (this.x2 < this.x1 && this.y2 > this.y1) ){
+            direction = 'l';
+        } else {
+            direction = 'r';
+        }
+        var imageName;
+        if(x>y){
+        [%prevlength=0%]
+        [%- FOREACH length=lengths %]
+            [%- IF prevlength == 0 %]
+            if(y<[%length%]){
+                h=1;
+                y = (this.y1+this.y2)/2;
+                imageName='l5x1.png';
+            [%- ELSE %]
+            } else if(y<[%length%]){
+                imageName=direction+'[%prevlength*2%]x[%prevlength%].png';
+            [%- END %]
+            [%prevlength=length%]
+        [%- END %]
+            } else {
+                imageName=direction+'[%prevlength*2%]x[%prevlength%].png';
+            }
+        } else {
+        [%prevlength=0%]
+        [%- FOREACH length=lengths %]
+            [%- IF prevlength == 0 %]
+            if(x<[%length%]){
+                w=1;
+                x = (this.x1+this.x2)/2;
+                imageName='l1x5.png';
+            [%- ELSE %]
+            } else if(x<[%length%]){
+                imageName=direction+'[%prevlength%]x[%prevlength*2%].png';
+            [%- END %]
+            [%prevlength=length%]
+        [%- END %]
+            } else {
+                imageName=direction+'[%prevlength%]x[%prevlength*2%].png';
+            }
+        }
+        this.img.src = LineDraw.Line.images[imageName];
+        this.img.style.left=x+"px";
+        this.img.style.top=y+"px";
+        this.img.style.width=w+"px";
+        this.img.style.height=h+"px";
+        window.status = this.img.src + ' height: '+this.img.style.height + ' width: '+this.img.style.width;
+     }

@@ -1,0 +1,6 @@
+[% INCLUDE '_header.tt' %]
+        <form>
+            <input name="s" value="[%c.req.params.s%]"/>
+            <input type="submit" value="Search"/>
+        </form>
+    </div>

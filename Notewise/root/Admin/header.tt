@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Notewise Administration Area</title>
+        <style>
+            table, td, th {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+                margin: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="http://notewise.com/images/logotop.png"/><br/><br/>

@@ -1,0 +1,8 @@
+Thanks for letting us know about that bug.  We'll take a look at it as soon as we can!<br/>
+
+<script type="text/javascript" src="[%base%]js/bugs.js"></script>
+<a id="close" href="#" onclick="Bugs.close_window()">Close</a> - 
+<a href="[% c.uri_for('/user/bug_report')%]">Report another bug</a>
+<script>
+    document.getElementById('close').focus();
+</script>

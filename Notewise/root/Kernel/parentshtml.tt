@@ -1,0 +1,36 @@
+[% max_depth=2 %]
+[% thumbnail_start_depth=1 %]
+[% FOR parent = kernel.parents %]
+    <div class="vkernel kernelthumbnail vkernel-expanded vkernel-notselected vkernel-noedit vkernel-contains" id="parentthumbnail[%parent.id%]">
+        <div class="vkernel-leftbackground vkernel-leftbackground-expanded vkernel-leftbackground-expanded-nothighlighted-contains"></div>
+        <div class="vkernel-mid-leftbackground vkernel-mid-leftbackground-expanded vkernel-mid-leftbackground-expanded-nothighlighted-contains"></div>
+        <div class="vkernel-mid-rightbackground vkernel-mid-rightbackground-expanded vkernel-mid-rightbackground-expanded-nothighlighted-contains"></div>
+        <div class="vkernel-rightbackground vkernel-rightbackground-expanded vkernel-rightbackground-expanded-nothighlighted-contains"></div>
+        [% IF parent.name %]
+            [% name_length = parent.name.length * 0.55 + 1%]
+        [% ELSE %]
+            [% name_length = 1.05%]
+        [% END %]
+        <input class="namefield"
+               style="width: [% name_length %]em;"
+               name="s"
+               value="[% parent.name | replace('"','&quot;') %]"
+               autocomplete="off"/>
+        <a class="namelink"
+           style="width: [% name_length %]em;"
+           href="[% base _ parent.relative_url %]">
+              [% parent.name %]
+        </a>
+        <div class="body">
+            [%# set i higher so we don't go so deep %]
+            [% INCLUDE 'Kernel/kernel-body.tt' i=thumbnail_start_depth kernel=parent highlight=kernel%]
+        </div>
+    </div>
+[% END %]
+
+<script>
+    [% FOR parent = kernel.parents %]
+        new KernelThumbnail([%parent.id%],$('parentthumbnail[%parent.id%]'));
+        [% INCLUDE 'Kernel/kernel-innerjs.tt' i=thumbnail_start_depth kernel=parent highlight=kernel%]
+    [% END %]
+</script>

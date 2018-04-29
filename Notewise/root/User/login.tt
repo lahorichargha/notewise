@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <style>
+            div.center {
+                margin-top: 100px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class=center>
+            <img src="http://notewise.com/images/logotop.png">
+            <form action='[% base _ c.req.path.replace('beta-perl/?','') %]' method='POST'>
+                [% FOREACH var IN c.req.params %]
+                    [% NEXT IF var.key == 'username'%]
+                    [% NEXT IF var.key == 'password'%]
+                    <input type=hidden name="[%var.key%]" value="[%var.value%]">
+                [% END %]
+                <table>
+                    <tr>
+                        <td>Username:</td>
+                        <td><input name='username'/></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input name='password' type='password'/></td>
+                    </tr>
+                    <tr>
+                        <td>Remember me:</td>
+                        <td><input type="checkbox" name='remember_me'/></td>
+                    </tr>
+                </table>
+                <input value='Login' type='submit'/>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+
+
+<p>[%message%]</p>
+<form action="[% base _ 'kernel/do_add' %]" method="post">
+    <table border=0 cellpadding=0 cellspacing=0>
+    
+        
+        <tr>
+            <td>created</td>
+            <td><input name="created" type="text" />
+</td>
+        </tr>
+    
+        
+        <tr>
+            <td>source</td>
+            <td><textarea cols="22" name="source" rows="3"></textarea>
+</td>
+        </tr>
+    
+        
+        <tr>
+            <td>lastviewed</td>
+            <td><input name="lastviewed" type="text" />
+</td>
+        </tr>
+    
+        
+        <tr>
+            <td>lastmodified</td>
+            <td><input name="lastmodified" type="text" />
+</td>
+        </tr>
+    
+        
+        <tr>
+            <td>name</td>
+            <td><textarea cols="22" name="name" rows="3"></textarea>
+</td>
+        </tr>
+    
+        
+        
+        <tr>
+            <td>uri</td>
+            <td><textarea cols="22" name="uri" rows="3"></textarea>
+</td>
+        </tr>
+    
+    </table>
+    <input type="submit" value="Add"/>
+<form/>
+<br/>
+<a href="[% base _ 'kernel/list' %]">List</a>

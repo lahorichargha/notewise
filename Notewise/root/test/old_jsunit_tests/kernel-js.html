@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="/js/prototype.js"></script>
+        <script type="text/javascript" src="/js/rico.js"></script>
+        <script type="text/javascript" src="/js/visiblekernel.js"></script>
+        <script type="text/javascript" src="/js/kernel.js"></script>
+        <script type="text/javascript" src="/js/controls.js"></script>
+        <script type="text/javascript" src="/js/effects.js"></script>
+        <script type="text/javascript" src="/js/dragdrop.js"></script>
+    </head>
+    <body>
+        <div id="kernel">
+            <ul>
+            <li>some</li>
+            <li>stuff</li>
+            <li>here</li>
+            </ul>
+        </div>
+        Retrieved data:<br/>
+        <script>
+//        function time(){
+//            var date = new Date();
+//            return date.getTime();
+//        }
+//        var kernelHTML = document.getElementById('kernel');
+//
+//        var kernel = new Kernel(5,document.kernelHTML);
+//        document.write("id: ",kernel.id);
+//        document.write('<br/>');
+//        var starttime = time();
+//        var kernel2 = Kernel.retrieve(10);
+//        document.write('time: '+(time()-starttime)+'millis');
+//        document.write('<br/>');
+//        document.write('name: '+kernel2.name);
+//        document.write('<br/>');
+//        document.write('created: '+kernel2.created);
+//        document.write('<br/>');
+//        document.write('lastModified: '+kernel2.lastModified);
+//        document.write('<br/>');
+//        document.write('source: '+kernel2.source);
+//        document.write('<br/>');
+//        document.write('uri: '+kernel2.uri);
+
+        var vkernel = VisibleKernel.create(1,100,200,300,0);
+        document.write('x: '+vkernel.x);
+        document.write('<br/>');
+        document.write('y: '+vkernel.y);
+        document.write('<br/>');
+        document.write('name: '+vkernel.kernel.name);
+        document.write('<br/>');
+        document.write('kernel_id: '+vkernel.kernel.id);
+        document.write('<br/>');
+
+        vkernel.kernel.setName("fred");
+        vkernel.kernel.setName("fred");
+
+        var vkernel = VisibleKernel.retrieve(1,vkernel.kernel.id);
+        document.write('x: '+vkernel.x);
+        document.write('<br/>');
+        document.write('y: '+vkernel.y);
+        document.write('<br/>');
+        document.write('name: '+vkernel.kernel.name);
+        document.write('<br/>');
+        document.write('kernel_id: '+vkernel.kernel.id);
+        document.write('<br/>');
+
+        document.write('done');
+        </script>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<ul>
+    <li>
+        <a href="0">rename to '[%c.req.params.s%]'</a><br>
+    </li>
+</ul>
+[% IF objects.size > 0 %]
+    Similarly named kernels:
+    <ul>
+    [%- search = c.req.params.s -%]
+    [%- FOR object = objects -%]
+        [%- PERL -%]
+            $stash->set(type=>ref $stash->get('object'));
+        [%-END-%]
+        [%- IF type.match('Kernel$') -%]
+            [%- PERL -%]
+                my $search = $stash->get('search');
+                my $object = $stash->get('object');
+                if($object->name =~ /$search/i){
+                    $stash->set(prematch=>$`);
+                    $stash->set(match=>$&);
+                    $stash->set(postmatch=>$');
+                }
+            [%- END -%]
+    <li>[%prematch%]<b>[%match%]</b>[%postmatch%]</li>
+        [%- END -%]
+        [%- IF type.match('Note$') -%]
+            [%- PERL -%]
+                my $search = $stash->get('search');
+                my $object = $stash->get('object');
+                if($object->content =~ /$search/i){
+                    $stash->set(prematch=>substr($`,-10));
+                    $stash->set(match=>$&);
+                    $stash->set(postmatch=>substr($',0,10));
+                }
+            [%- END -%]
+    <li>[%-object.kernel.name%] : ([%prematch%]<b>[%match%]</b>[%postmatch-%])</li>
+        [%- END -%]
+    [%- END -%]
+    </ul>
+[%END%]

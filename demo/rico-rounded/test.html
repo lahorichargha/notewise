@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <script type="text/javascript" src="prototype.js"></script>
+        <script type="text/javascript" src="rico.js"></script>
+        <style>
+            #kernel div {
+                width: 100px;
+                height: 100px;
+                background:red;
+            }
+            
+            #kernel {
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="kernel">
+            <div/>
+        </div>
+        <script>
+            Rico.Corner.round('kernel');
+        </script>
+    </body>
+</html>

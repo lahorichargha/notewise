@@ -1,0 +1,179 @@
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+        <script type="text/javascript" src="prototype.js"></script>
+        <script type="text/javascript" src="jsdbi.js"></script>
+        <script language="JavaScript" type="text/javascript" src="jsunit/app/jsUnitCore.js"></script>
+
+
+</head>
+
+<body >
+  <h1>jsdbi tests</h1>
+
+  <p>This page contains tests for jsdbi.
+  To see them, take a look at the source.</p>
+
+    <script language="JavaScript" type="text/javascript">
+
+    var Music;
+    var artist;
+
+    function setUp(){
+        debug('setUp()');
+        Music = {
+        };
+
+
+
+
+        Music.Cd = Class.create();
+        Music.Cd.extend(JSDBI);
+
+        Music.Cd.fields(['cdid', 'artist', 'title', 'year']);
+        Music.Cd.url('http://localhost:3004/rest/cd');
+        Music.Cd.elementTag('cd');
+        Music.Cd.has_a('artist', 'Music.Artist');
+
+        Music.Cd.prototype = new JSDBI();
+        Music.Cd.prototype.extend({
+                initialize: function () {
+                },
+        });
+
+
+        Music.Artist = Class.create();
+        Music.Artist.extend(JSDBI);
+
+        Music.Artist.fields(['artistid', 'name']);
+        Music.Artist.url('http://localhost:3004/rest/artist');
+        Music.Artist.elementTag('artist'); //optional
+        Music.Artist.has_many('cds', 'Music.Cd', 'artist', 'http://localhost:3004/rest/artist/find/$/cd'); 
+
+        debugger;
+
+        Music.Artist.prototype = new JSDBI();
+        Music.Artist.prototype.extend( {
+            initialize: function () {
+            },
+        });
+
+
+        Music.Track = Class.create();
+        Music.Track.extend(JSDBI);
+
+        Music.Track.fields(['trackid', 'cd', 'position', 'title']);
+        Music.Track.contentField('title');
+        Music.Track.url('http://localhost:3004/rest/track');
+        Music.Track.elementTag('track');
+        Music.Track.has_a('cd', 'Music.Cd');
+
+        Music.Track.prototype = new JSDBI()
+        Music.Track.extend({
+                initialize: function () {
+                },
+        });
+
+
+        artist = Music.Artist.insert({name: 'Billy'});
+    }
+
+    function testInsert() {
+        debug("testInsert()");
+
+        assertEquals('name','Billy',artist.name());
+        assert('artistid',artist.artistid() > 0);
+        assert('id',artist.id() > 0);
+        assertEquals('artist as string',String(artist.id()),""+artist);
+    }
+
+    function testMultipleInsert() {
+        debug("testInsert()");
+
+        cd = Music.Cd.insert({artist: artist, title: 'Death March', year: '2005'});
+
+        assertEquals('name','Billy',artist.name());
+        assert('artistid',artist.artistid() > 0);
+        assert('id',artist.id() > 0);
+        assertEquals('artist as string',String(artist.id()),""+artist);
+
+        assertEquals('artist',artist,cd.artist());
+        assertEquals('title','Death March',cd.title());
+        assertEquals('year','2005',cd.year());
+        assert('cdid',cd.cdid() > 0);
+        assert('id',cd.id() > 0);
+        assertEquals('cdid = id',cd.id(),cd.cdid());
+    }
+
+    function testRetrieve() {
+        debug("testRetrieve()");
+        artist = Music.Artist.retrieve(artist.id());
+
+        assertEquals('name','Billy',artist.name());
+        assert('artistid',artist.artistid() > 0);
+        assert('id',artist.id() > 0);
+        assertEquals('artist as string',String(artist.id()),""+artist);
+    }
+
+    function testUpdate() {
+        debug("testUpdate()");
+        artist.name('Fred');
+        artist.update();
+
+        assertEquals('name','Fred',artist.name());
+        assert('artistid',artist.artistid() > 0);
+        assert('id',artist.id() > 0);
+        assertEquals('artist as string',String(artist.id()),""+artist);
+
+        artist = Music.Artist.retrieve(artist.id());
+
+        assertEquals('name','Fred',artist.name());
+        assert('artistid',artist.artistid() > 0);
+        assert('id',artist.id() > 0);
+        assertEquals('artist as string',String(artist.id()),""+artist);
+    }
+
+    function testRelationships() {
+        var artist2 = Music.Artist.insert({name: 'Elvis Presley'});
+
+        var cd = Music.Cd.insert({title: 'Jail House Rock', year: 1954});
+        cd.artist(artist2);
+        cd.update();
+        cd2 = artist2.add_to_cds({title: 'Blue Suede Shoes', year: 1956});
+
+        assertEquals('cd title','Jail House Rock',cd.title());
+        assertEquals('cd2 title','Blue Suede Shoes',cd2.title());
+        assertEquals('cd year','1954',cd.year());
+        assertEquals('cd2 year','1956',cd2.year());
+        assertEquals('cd artist',""+artist2,""+cd.artist());
+        assertEquals('cd2 artist',""+artist2,""+cd2.artist());
+
+        var cdList = artist2.cds();
+        assertEquals('number of cds', 2, cdList.length);
+
+        artist.destroy();
+        cd.destroy();
+        cd2.destroy();
+    }
+
+    function testContentAttribute() {
+        debug("testContentAttribute()");
+        var cd = Music.Cd.insert({title: 'Rock n roll all night', year: 1954});
+//        debugger;
+        track = Music.Track.insert({cd: cd, position: '42', title: 'Rock in the workplace'});
+
+        assertEquals('cd',cd+'',track.cd()+'');
+        assertEquals('position','42',track.position());
+        assertEquals('title','Rock in the workplace',track.title());
+        assert('trackid',track.trackid() > 0);
+        assert('id',track.id() > 0);
+    }
+
+    function tearDown() {
+        debug('tearDown()');
+        artist.destroy();
+    }
+
+    </script>
+</body>
+</html>

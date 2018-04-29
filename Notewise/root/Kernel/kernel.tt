@@ -1,0 +1,70 @@
+[%
+classes = [];
+IF vkernel.collapsed;
+    collapsed = 'collapsed';
+  ELSE;
+    collapsed = 'expanded';
+  END;
+  classes.push(collapsed);
+
+  IF highlight.id == vkernel.get_column('contained_object');
+    classes.push('highlighted');
+  ELSE;
+    classes.push('nothighlighted');
+  END;
+
+  IF vkernel.contained_kernel.has_children;
+        classes.push('contains');
+  ELSE;
+        classes.push('notcontains');
+  END;
+
+%]
+[% id = vkernel.get_column('container_object') _ '/' _ vkernel.get_column('contained_object') %]
+<div id="vkernel[%id%]" class="vkernel vkernel-notselected vkernel-notedit vkernel-[%classes.join(' vkernel-')%]"
+         style="left: [% vkernel.x %]%; top: [% vkernel.y %]%;
+                [% IF vkernel.collapsed %]
+                    [% IF vkernel.contained_kernel.name.length %]
+                        width: [% vkernel.contained_kernel.name.length * 0.55 + 4%]em;
+                    [% ELSE %]
+                        width: 4em;
+                    [% END %]
+                [% ELSE %]
+                    width: [% vkernel.width %]%;
+                    height: [% vkernel.height %]%;
+                [% END %]">
+    <div class="expandbutton"></div>
+    <a title="Remove kernel" class="removebutton"></a>
+    <a title="Rename kernel" class="editbutton"></a>
+    <div class="relationshiphalo">
+        <div class="newrelationshiparrow"></div>
+        <div class="halo-top-left"></div>
+        <div class="halo-top"></div>
+        <div class="halo-top-right"></div>
+        <div class="halo-left"></div>
+        <div class="halo-right"></div>
+        <div class="halo-bottom-left"></div>
+        <div class="halo-bottom"></div>
+        <div class="halo-bottom-right"></div>
+    </div>
+    <div class="vkernel-leftbackground vkernel-leftbackground-[%collapsed%] vkernel-leftbackground-[%classes.join('-')%]"></div>
+    <div class="vkernel-mid-leftbackground vkernel-mid-leftbackground-[%collapsed%] vkernel-mid-leftbackground-[%classes.join('-')%]"></div>
+    <div class="vkernel-mid-rightbackground vkernel-mid-rightbackground-[%collapsed%] vkernel-mid-rightbackground-[%classes.join('-')%]"></div>
+    <div class="vkernel-rightbackground vkernel-rightbackground-[%collapsed%] vkernel-rightbackground-[%classes.join('-')%]"></div>
+    [% IF vkernel.contained_kernel.name %]
+        [% name_length = vkernel.contained_kernel.name.length * 0.55 + 1%]
+    [% ELSE %]
+        [% name_length = 1.05%]
+    [% END %]
+    <input class="namefield" style="width: [% name_length %]em;" name="s" value="[% vkernel.contained_kernel.name | replace('"','&quot;') %]" autocomplete="off"/>
+    <div class="searchresults" style="display: none"></div>
+    <a class="namelink" style="width: [% name_length %]em;" href="[% base _ vkernel.contained_kernel.relative_url %]">
+        [% vkernel.contained_kernel.name %]
+    </a>
+    <div class="body">
+        [% UNLESS vkernel.collapsed %]
+            [% INCLUDE 'Kernel/kernel-body.tt' kernel=vkernel.contained_kernel%]
+        [% END %]
+    </div>
+    <div class="corner"></div>
+</div>

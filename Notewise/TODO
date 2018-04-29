@@ -1,0 +1,8 @@
+upgrade jsdbi to allow multiple primary keys
+refactor to use jsdbi
+real containership
+zorder management (zorder manager)
+make ui full screen
+notes
+relationships
+note zoom

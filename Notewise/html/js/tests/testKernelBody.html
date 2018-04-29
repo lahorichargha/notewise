@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <script src="../../jsunit/app/jsUnitCore.js"></script>
+    <script src="../../jsunit/app/jsUnitMockTimeout.js"></script>
+    <script src="../prototype.js"></script>
+    <script src="../test_utils.js"></script>
+    <script src="../jsdbi.js"></script>
+    <script src="../dragndrop.js"></script>
+    <script src="../utils.js"></script>
+    <script src="../wiseobject.js"></script>
+    <script src="../note.js"></script>
+    <script src="../kernelbody.js"></script>
+    <script src="../kernel.js"></script>
+  </head>
+  <body>
+    <script>
+      var objectCache = {};
+      Ajax.Request = AjaxRequestStub;
+      function setUp() {
+        AjaxRequestStub.clear();
+        objectCache = {};
+      }
+
+      function testShiftClickShouldBlockClicksForOneSecond() {
+        Clock.reset();
+        var kernel = new Kernel();
+        kernel.id(1234);
+        var body = new KernelBody($('kernelbody'), kernel);
+
+        body.gotClick({shiftKey: true});
+        assertEquals(1, AjaxRequestStub.requests.length);
+        assertEquals("put", AjaxRequestStub.requests[0].options.method);
+        assertEquals("rest/note", AjaxRequestStub.requests[0].requested_url);
+
+        Clock.tick(500);
+        body.gotClick({shiftKey: true});
+        assertEquals(1, AjaxRequestStub.requests.length);
+
+        Clock.tick(501);
+        body.gotClick({shiftKey: true});
+        assertEquals(2, AjaxRequestStub.requests.length);
+        assertEquals("second action should be put",
+                     "put", AjaxRequestStub.requests[1].options.method);
+        assertEquals("rest/note", AjaxRequestStub.requests[1].requested_url);
+      }
+    </script>
+    <div id=kernelbody>
+    </div>
+  </body>
+</html>

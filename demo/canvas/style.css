@@ -1,0 +1,33 @@
+.newline {
+    z-index:1;
+}
+
+.line {
+    width: 500px;
+    height: 500px;
+    background: none;
+    position: 100 100 absolute;
+}
+.box {
+    position: absolute;
+    border: 0px solid black;
+    background: blue;
+    z-index:3;
+} 
+.box .nameField {
+    background: none;
+    border: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100px;
+    text-align: center;
+    color: white;
+}
+.box .contentArea {
+    margin: 5px;
+    background: white;
+}
+body {
+    padding: 0;
+    margin: 0;
+}

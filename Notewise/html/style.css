@@ -1,0 +1,1551 @@
+body.kernelview {
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    padding: 0; margin: 0;
+    overflow: hidden;
+    background: url('/images/background-gradient.png') #d4d4d4 repeat-x;
+}
+
+.vkernel {
+    position: absolute;
+    z-index: 10;
+}
+
+.vkernel-collapsed {
+    height: 24px;
+}
+
+.vkernel .vkernel-collapsed {
+    height: 15px;
+}
+
+/* vkernel header images */
+
+/* regular collapsed header image sizes */
+.vkernel-leftbackground {
+    position: absolute;
+    height: 24px;
+    left: 0px;
+    width: 8px;
+    top: 0px;
+    z-index: 0;
+}
+.vkernel-mid-leftbackground {
+    position: absolute;
+    height: 24px;
+    left: 8px;
+    right: 33px;
+    top: 0px;
+    z-index: 0;
+}
+.vkernel-rightbackground {
+    position: absolute;
+    height: 24px;
+    width: 33px;
+    right: 0px;
+    top: 0px;
+    z-index: 0;
+    cursor: move;
+}
+
+/* mini collapsed header image sizes */
+.vkernel .vkernel .vkernel-leftbackground {
+    position: absolute;
+    height: 15px;
+    left: 0px;
+    width: 6px;
+    top: 0px;
+    z-index: 0;
+}
+
+.vkernel .vkernel .vkernel-mid-leftbackground {
+    position: absolute;
+    height: 15px;
+    left: 6px;
+    right: 23px;
+    top: 0px;
+    z-index: 0;
+    font-size: 1px;
+}
+
+.vkernel .vkernel .vkernel-rightbackground {
+    position: absolute;
+    height: 15px;
+    width: 23px;
+    right: 0px;
+    top: 0px;
+    z-index: 0;
+    cursor: move;
+    font-size: 1px;
+}
+
+.vkernel-mid-rightbackground-collapsed {
+    display: none;
+}
+
+
+/* regular expanded header sizes */
+.vkernel-leftbackground-expanded {
+    position: absolute;
+    height: 24px;
+    left: 0px;
+    width: 6px;
+    top: 0px;
+    z-index: 0;
+}
+.vkernel-mid-leftbackground-expanded {
+    position: absolute;
+    height: 24px;
+    left: 6px;
+    right: 33px;
+    top: 0px;
+    z-index: 0;
+}
+.vkernel-mid-rightbackground-expanded {
+    display: block;
+    position: absolute;
+    height: 24px;
+    right: 6px;
+    width: 33px;
+    top: 0px;
+    z-index: 0;
+    cursor: move;
+}
+.vkernel-rightbackground-expanded {
+    position: absolute;
+    height: 24px;
+    width: 6px;
+    right: 0px;
+    top: 0px;
+    z-index: 0;
+    cursor: default;
+}
+
+/* mini expanded header sizes */
+.vkernel .vkernel .vkernel-leftbackground-expanded {
+    position: absolute;
+    height: 15px;
+    left: 0px;
+    width: 6px;
+    top: 0px;
+    z-index: 0;
+}
+.vkernel .vkernel .vkernel-mid-leftbackground-expanded {
+    position: absolute;
+    height: 15px;
+    left: 6px;
+    right: 33px;
+    top: 0px;
+    z-index: 0;
+}
+.vkernel .vkernel .vkernel-mid-rightbackground-expanded {
+    display: block;
+    position: absolute;
+    height: 15px;
+    right: 6px;
+    width: 33px;
+    top: 0px;
+    z-index: 0;
+    cursor: move;
+}
+.vkernel .vkernel .vkernel-rightbackground-expanded {
+    position: absolute;
+    height: 15px;
+    width: 6px;
+    right: 0px;
+    top: 0px;
+    z-index: 0;
+    cursor: default;
+}
+
+/* gray collapsed*/
+.vkernel-leftbackground-collapsed-nothighlighted-notcontains { background: url('/images/body-left.gif') no-repeat; }
+.vkernel-mid-leftbackground-collapsed-nothighlighted-notcontains { background: url('/images/body-mid.gif'); }
+.vkernel-rightbackground-collapsed-nothighlighted-notcontains { background: url('/images/body-right.gif') no-repeat; }
+
+/* blue collapsed*/
+.vkernel-leftbackground-collapsed-nothighlighted-contains { background: url('/images/kernel-blue-left.gif') no-repeat; }
+.vkernel-mid-leftbackground-collapsed-nothighlighted-contains { background: url('/images/kernel-blue-mid.gif'); }
+.vkernel-rightbackground-collapsed-nothighlighted-contains { background: url('/images/kernel-blue-right.gif') right no-repeat; }
+
+/* grey expanded */
+.vkernel-leftbackground-expanded-nothighlighted-notcontains { background: url('/images/kernel-expanded-gray-left.gif') no-repeat; }
+.vkernel-mid-leftbackground-expanded-nothighlighted-notcontains { background: url('/images/kernel-expanded-gray-mid-left.gif'); }
+.vkernel-mid-rightbackground-expanded-nothighlighted-notcontains { background: url('/images/kernel-expanded-gray-mid-right.gif'); }
+.vkernel-rightbackground-expanded-nothighlighted-notcontains { background: url('/images/kernel-expanded-gray-right.gif') right no-repeat; }
+
+/* blue expanded */
+.vkernel-leftbackground-expanded-nothighlighted-contains { background: url('/images/kernel-expanded-left.gif') no-repeat; }
+.vkernel-mid-leftbackground-expanded-nothighlighted-contains { background: url('/images/kernel-expanded-mid-left.gif'); }
+.vkernel-mid-rightbackground-expanded-nothighlighted-contains { background: url('/images/kernel-expanded-mid-right.gif'); }
+.vkernel-rightbackground-expanded-nothighlighted-contains { background: url('/images/kernel-expanded-right.gif') right no-repeat; }
+
+/* mini gray collapsed*/
+.vkernel .vkernel .vkernel-leftbackground-collapsed-nothighlighted-notcontains { background: url('/images/kernel-mini-left.gif') no-repeat; }
+.vkernel .vkernel .vkernel-mid-leftbackground-collapsed-nothighlighted-notcontains { background: url('/images/kernel-mini-mid.gif'); }
+.vkernel .vkernel .vkernel-rightbackground-collapsed-nothighlighted-notcontains { background: url('/images/kernel-mini-right.gif') no-repeat; }
+
+/* mini blue collapsed*/
+.vkernel .vkernel .vkernel-leftbackground-collapsed-nothighlighted-contains { background: url('/images/kernel-mini-blue-left.gif') no-repeat; }
+.vkernel .vkernel .vkernel-mid-leftbackground-collapsed-nothighlighted-contains { background: url('/images/kernel-mini-blue-mid.gif'); }
+.vkernel .vkernel .vkernel-rightbackground-collapsed-nothighlighted-contains { background: url('/images/kernel-mini-blue-right.gif') right no-repeat; }
+
+/* mini grey expanded */
+.vkernel .vkernel .vkernel-leftbackground-expanded-nothighlighted-notcontains { background: url('/images/kernel-mini-gray-expanded-left.gif') no-repeat; }
+.vkernel .vkernel .vkernel-mid-leftbackground-expanded-nothighlighted-notcontains { background: url('/images/kernel-mini-gray-expanded-midleft.gif'); }
+.vkernel .vkernel .vkernel-mid-rightbackground-expanded-nothighlighted-notcontains { background: url('/images/kernel-mini-gray-expanded-midright.gif'); }
+.vkernel .vkernel .vkernel-rightbackground-expanded-nothighlighted-notcontains { background: url('/images/kernel-mini-gray-expanded-right.gif') right no-repeat; }
+
+/* mini blue expanded */
+.vkernel .vkernel .vkernel-leftbackground-expanded-nothighlighted-contains { background: url('/images/kernel-mini-blue-expanded-left.gif') no-repeat; }
+.vkernel .vkernel .vkernel-mid-leftbackground-expanded-nothighlighted-contains { background: url('/images/kernel-mini-blue-expanded-midleft.gif'); }
+.vkernel .vkernel .vkernel-mid-rightbackground-expanded-nothighlighted-contains { background: url('/images/kernel-mini-blue-expanded-midright.gif'); }
+.vkernel .vkernel .vkernel-rightbackground-expanded-nothighlighted-contains { background: url('/images/kernel-mini-blue-expanded-right.gif') right no-repeat; }
+
+.vkernel-leftbackground.highlighted { background: url('/images/kernel-highlighted-left.gif') no-repeat; }
+.vkernel-mid-leftbackground.highlighted { background: url('/images/kernel-highlighted-mid.gif'); }
+.vkernel-rightbackground.hightlighted { background: url('/images/kernel-highlighted-right.gif') right no-repeat; }
+
+
+.vkernel .vkernel .vkernel-leftbackground-collapsed-highlighted-contains,
+.vkernel .vkernel .vkernel-leftbackground-collapsed-highlighted-notcontains {
+    background: url('/images/kernel-mini-highlighted-left.gif') no-repeat;
+}
+.vkernel .vkernel .vkernel-mid-leftbackground-collapsed-highlighted-contains,
+.vkernel .vkernel .vkernel-mid-leftbackground-collapsed-highlighted-notcontains {
+    background: url('/images/kernel-mini-highlighted-mid.gif');
+}
+
+.vkernel .vkernel .vkernel-rightbackground-collapsed-highlighted-contains,
+.vkernel .vkernel .vkernel-rightbackground-collapsed-highlighted-notcontains {
+    background: url('/images/kernel-mini-highlighted-right.gif') right no-repeat;
+}
+
+
+.vkernel .vkernel .vkernel-leftbackground-expanded-highlighted-contains,
+.vkernel .vkernel .vkernel-leftbackground-expanded-highlighted-notcontains {
+    background: url('/images/kernel-mini-orange-expanded-left.gif') no-repeat;
+}
+
+.vkernel .vkernel .vkernel-mid-leftbackground-expanded-highlighted-contains,
+.vkernel .vkernel .vkernel-mid-leftbackground-expanded-highlighted-contains {
+    background: url('/images/kernel-mini-orange-expanded-midleft.gif');
+}
+
+.vkernel .vkernel .vkernel-mid-rightbackground-expanded-highlighted-contains,
+.vkernel .vkernel .vkernel-mid-rightbackground-expanded-highlighted-notcontains {
+    background: url('/images/kernel-mini-orange-expanded-midright.gif');
+}
+
+.vkernel .vkernel .vkernel-rightbackground-expanded-highlighted-contains,
+.vkernel .vkernel .vkernel-rightbackground-expanded-highlighted-notcontains {
+    background: url('/images/kernel-mini-orange-expanded-right.gif') right no-repeat;
+}
+
+
+.note {
+    position: absolute;
+    z-index: 10;
+}
+
+
+.notebody {
+    background: white;
+    position: absolute;
+    border: 1px solid #767676;
+    top: 9px;
+    left: 0px;
+    right: 1px;
+    bottom: 1px;
+    clear: both;
+    overflow: auto;
+    z-index: 0;
+    font-family: sans-serif;
+    font-size: 0.8em;
+    padding: 2px;
+}
+
+.note .bodycontainer {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    left: 0; top: 0;
+    overflow: hidden;
+}
+
+.note-left {
+    position: absolute;
+    background: url('/images/note-upper-left.gif') top no-repeat;
+    height: 11px;
+    left: 0px;
+    width: 7px;
+    top: 0px;
+    z-index: 3;
+}
+
+.note-mid {
+    position: absolute;
+    background: url('/images/note-upper-mid.gif') repeat-x;
+    height: 11px;
+    left: 7px;
+    right: 6px;
+    top: 0px;
+    cursor: move;
+    z-index: 3;
+}
+
+.note-right {
+    position: absolute;
+    background: url('/images/note-upper-right.gif') top right no-repeat;
+    height: 11px;
+    width: 6px;
+    right: 1px;
+    top: 0px;
+    z-index: 3;
+}
+
+.relationshiphalo {
+    display: none;
+    position: absolute;
+    left: -15px;
+    top: -15px;
+    right: -15px;
+    bottom: -15px;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+}
+
+.relationshiphalo * {
+    font-size: 1px;
+}
+
+.vkernel-selected .relationshiphalo,
+.note-selected .relationshiphalo {
+    display: block;
+}
+
+.vkernel-notselected .relationshiphalo,
+.note-notselected .relationshiphalo {
+    display: none;
+}
+
+.vkernel-notselected .vkernel-selected .relationshiphalo,
+.vkernel-notselected .note-selected .relationshiphalo,
+.note-notselected .vkernel-selected .relationshiphalo,
+.note-notselected .vkernel-selected .relationshiphalo {
+    display: block;
+}
+
+.vkernel-selected .vkernel-notselected .relationshiphalo,
+.vkernel-selected .note-notselected .relationshiphalo,
+.note-selected .vkernel-notselected .relationshiphalo,
+.note-selected .note-notselected .relationshiphalo {
+    display: none;
+}
+
+.halo-top-left {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 19px;
+    height: 19px;
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/halo-top-left.png');
+}
+
+.halo-top-left[class] {
+    /* IE ignores this block */
+    background: url('/images/halo-top-left.png') no-repeat;*/
+}
+
+.halo-left {
+    position: absolute;
+    left: 0px;
+    top: 19px;
+    bottom: 19px;
+    width: 19px;
+    z-index: -2;
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/halo-left.png');
+}
+
+.halo-left[class] {
+    /* IE ignores this block */
+    background: url('/images/halo-left.png');
+}
+
+.halo-bottom-left {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 19px;
+    height: 19px;
+    z-index: -2;
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/halo-bottom-left.png');
+}
+
+.halo-bottom-left[class] {
+    /* IE ignores this block */
+    background: url('/images/halo-bottom-left.png') no-repeat;
+}
+
+.halo-top {
+    position: absolute;
+    left: 19px;
+    top: 0px;
+    right: 19px;
+    height: 19px;
+    z-index: -2;
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/halo-top.png');
+}
+
+.halo-top[class] {
+    /* IE ignores this block */
+    background: url('/images/halo-top.png');
+}
+
+.halo-bottom {
+    position: absolute;
+    left: 19px;
+    bottom: 0px;
+    right: 19px;
+    height: 19px;
+    z-index: -2;
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/halo-bottom.png');
+}
+
+.halo-bottom[class] {
+    /* IE ignores this block */
+    background: url('/images/halo-bottom.png');
+}
+
+.halo-right {
+    position: absolute;
+    right: 0px;
+    top: 19px;
+    bottom: 19px;
+    width: 19px;
+    z-index: -2;
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/halo-right.png');
+}
+
+.halo-right[class] {
+    /* IE ignores this block */
+    background: url('/images/halo-right.png');
+}
+
+.halo-top-right {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 19px;
+    height: 19px;
+    z-index: -2;
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/halo-top-right.png');
+}
+
+.halo-top-right[class] {
+    background: url('/images/halo-top-right.png') no-repeat;
+}
+
+.halo-bottom-right {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 19px;
+    height: 19px;
+    z-index: -2;
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/halo-bottom-right.png');
+}
+
+.halo-bottom-right[class] {
+    /* IE ignores this block */
+    background: url('/images/halo-bottom-right.png') no-repeat;
+}
+
+.newrelationshiparrow {
+    position: absolute;
+    width: 13px;
+    height: 14px;
+}
+
+.newrelationshiparrow.up {
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/rel-arrow-up.png');
+}
+.newrelationshiparrow.up[class] {
+    background: url('/images/rel-arrow-up.png') no-repeat; 
+}
+
+.newrelationshiparrow.down {
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/rel-arrow-down.png');
+}
+.newrelationshiparrow.down[class] {
+    background: url('/images/rel-arrow-down.png') no-repeat; 
+}
+
+.newrelationshiparrow.left {
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/rel-arrow-left.png');
+}
+.newrelationshiparrow.left[class] {
+    background: url('/images/rel-arrow-left.png') no-repeat; 
+}
+
+.newrelationshiparrow.right {
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/rel-arrow-right.png');
+}
+.newrelationshiparrow.right[class] {
+    background: url('/images/rel-arrow-right.png') no-repeat; 
+}
+
+.newrelationshiparrow.upleft {
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/rel-arrow-up-left.png');
+}
+.newrelationshiparrow.upleft[class] {
+    background: url('/images/rel-arrow-up-left.png') no-repeat; 
+}
+
+.newrelationshiparrow.upright {
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/rel-arrow-up-right.png');
+}
+.newrelationshiparrow.upright[class] {
+    background: url('/images/rel-arrow-up-right.png') no-repeat; 
+}
+
+.newrelationshiparrow.downleft {
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/rel-arrow-down-left.png');
+}
+.newrelationshiparrow.downleft[class] {
+    background: url('/images/rel-arrow-down-left.png') no-repeat; 
+}
+
+.newrelationshiparrow.downright {
+    background: url('/images/clear.gif');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='/images/rel-arrow-down-right.png');
+}
+.newrelationshiparrow.downright[class] {
+    background: url('/images/rel-arrow-down-right.png') no-repeat; 
+}
+
+.relationship {
+    border: 0px;
+    z-index: 10;
+}
+
+
+.expandbutton,
+.removebutton,
+.editbutton {
+    position: absolute;
+}
+
+.vkernel .expandbutton {
+    left: 4px;
+    top: 6px;
+    width: 7px;
+    height: 10px;
+    z-index: 5;
+}
+
+.vkernel-expanded .expandbutton {
+    left: 4px;
+    top: 8px;
+    width: 9px;
+    height: 8px;
+    background: url('/images/spinner-vert.gif') no-repeat;
+    z-index: 5;
+}
+
+.vkernel-collapsed .expandbutton {
+    left: 4px;
+    top: 6px;
+    width: 8px;
+    height: 9px;
+    background: url('/images/spinner-horiz.gif') no-repeat;
+    z-index: 5;
+}
+
+.removebutton {
+    left: 6px;
+    top: -12px;
+    background: url('/images/close-button.png') no-repeat;
+    width: 12px;
+    height: 12px;
+}
+
+.removebutton-hover {
+    background: url('/images/close-button-highlighted.png') no-repeat;
+}
+
+.editbutton {
+    left: 18px;
+    top: -12px;
+    background: url('/images/edit-button.png') no-repeat;
+    width: 10px;
+    height: 12px;
+}
+
+.editbutton-hover {
+    background: url('/images/edit-button-highlighted.png') no-repeat;
+}
+
+.note-selected .removebutton {
+    display: block;
+}
+
+.note-notselected .removebutton {
+    display: none;
+}
+
+.note-notselected .note-selected .removebutton,
+.vkernel-notselected .note-selected .removebutton {
+    display: block;
+}
+
+.note-selected .note-notselected .removebutton,
+.vkernel-selected .note-notselected .removebutton {
+    display: none;
+}
+
+.vkernel-selected .removebutton,
+.vkernel-selected .editbutton {
+    display: block;
+}
+
+.vkernel-notselected .removebutton,
+.vkernel-notselected .editbutton {
+    display: none;
+}
+
+.vkernel-notselected .vkernel-selected .removebutton,
+.vkernel-notselected .vkernel-selected .editbutton {
+    display: block;
+}
+
+.vkernel-selected .vkernel-notselected .removebutton,
+.vkernel-selected .vkernel-notselected .editbutton {
+    display: none;
+}
+
+.relationship-selected .relationshipLabel {
+    border: 1px solid black;
+}
+
+.relationship-notselected .relationshipLabel {
+    border: 1px solid white;
+}
+
+/*.notselected .relationship-selected .relationshipLabel {
+    border: 1px solid black;
+}
+
+.selected .relationship-notselected .relationshipLabel {
+    border: 1px solid white;
+}*/
+
+.relationship-selected .removebutton {
+    display: block;
+}
+
+.relationship-notselected .removebutton {
+    display: none;
+}
+
+.vkernel-notselected .relationship-selected .removebutton {
+    display: block;
+}
+
+.vkernel-selected .relationship-notselected .removebutton {
+    display: none;
+}
+
+.relationship .removebutton {
+    position: absolute;
+    background: url('/images/rel-close-button.gif') no-repeat;
+    width: 13px;
+    height: 12px;
+    padding: 0px;
+    left: 55px;
+    top: -6px;
+    z-index: 10;
+}
+
+img {
+    z-index: 0;
+}
+
+.arrowdiv {
+    position: absolute;
+    /* This is necessary to make the arrows clickable in IE.  Otherwise the click is stolen by the line image. */
+    background: url('/images/clear.gif');
+    z-index: 1;
+}
+
+.arrowcanvas {
+    left: -17px;
+    top: -17px;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    z-index: 0;
+    /* This is necessary to make the arrows clickable in IE.  Otherwise the click is stolen by the line image. */
+    background: url('/images/clear.gif');
+}
+
+.arrowclickbox {
+    position: absolute;
+    z-index: 9;
+}
+
+.labelDiv {
+    position: absolute;
+    z-index: 9;
+}
+
+.relationshipLabel {
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    background: white;
+    border: 1px solid white;
+    text-align: center;
+    top: -10px;
+    left: -50px;
+    z-index: 1;
+}
+
+.vkernel .namelink {
+    border: 0px solid white;
+    color: white;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+
+    font-style: italic;
+    font-family: sans-serif;
+    font-size: 12px;
+    top: 4px;
+    left: 15px;
+}
+
+.vkernel a.namelink {
+    color: white;
+}
+
+.vkernel a.namelink:hover {
+    color: black;
+}
+
+.vkernel a.namelink:active {
+    color: red;
+}
+
+.vkernel .namefield {
+    background: white;
+    color: black;
+    display: none;
+    position: absolute;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 12px;
+    top: 2px;
+    left: 15px;
+}
+
+.vkernel-edit .namefield {
+    display: block;
+}
+
+.vkernel-notedit .namefield {
+    display: none;
+}
+
+.vkernel-notedit .vkernel-edit .namefield {
+    display: block;
+    background: white;
+}
+
+.vkernel-edit .vkernel-notedit .namefield {
+    display: none;
+}
+
+.vkernel-edit .namelink {
+    display: none;
+}
+
+.vkernel-notedit .namelink {
+    display: block;
+}
+
+.vkernel-notedit .vkernel-edit .namelink {
+    display: none;
+}
+
+.vkernel-edit .vkernel-notedit .namelink {
+    display: block;
+}
+
+.vkernel .body {
+    background: white;
+    position: absolute;
+    left: 0px; right: 1px;
+    top: 23px; bottom: 1px;
+    border: 1px solid #767676;
+    clear: both;
+    overflow: hidden;
+}
+
+* html .vkernel .body {
+    width: 99%;
+    height: 88%;
+}
+
+.vkernel .body-activated {
+    background: #d2eeff;
+}
+
+.vkernel-collapsed .body {
+    height: 0px;
+    display: none;
+}
+.vkernel .vkernel .namelink {
+    font-style: normal;
+    font-size: 9px;
+    top: 1px;
+    left: 10px;
+}
+
+.vkernel .vkernel .namefield {
+    font-size: 9px;
+    top: 0px;
+    left: 14px;
+    height: 14px;
+    padding: 0px;
+}
+
+.vkernel .vkernel .expandbutton {
+   top: 3px;
+}
+
+.vkernel .vkernel .body {
+    top: 14px;
+}
+
+.vkernel-collapsed .corner {
+    display: none;
+}
+
+.corner {
+    position: absolute;
+    background: url('/images/note-corner.gif') right no-repeat;
+    right: 3px;
+    bottom: 3px;
+    width: 10px;
+    height: 10px;
+    cursor: se-resize;
+    z-index: 2;
+
+    /* this is a hack to make the div the right height in IE - no idea why it
+     * works. */
+    font-size: 12px;
+}
+div.auto_complete {
+  width: 350px;
+  background: #0ff;
+  z-index:100;
+}
+div.auto_complete ul {
+  margin:0;
+  padding:0;
+  width:100%;
+  list-style-type:none;
+}
+div.auto_complete ul li {
+  margin:0;
+  padding:3px;
+}
+div.auto_complete ul li.selected { 
+  background-color: #ffb; 
+}
+div.auto_complete ul strong.highlight { 
+  color: #800; 
+  margin:0;
+  padding:0;
+}
+
+.dummyDiv {
+    position: absolute;
+    height: 24px;
+    width: 70px;
+}
+
+.dummyDiv .left {
+    position: absolute;
+    background: url('/images/kernel-pending-left.gif');
+    left: 0px;
+    top: 0px;
+    width: 6px;
+    height: 24px;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.dummyDiv .mid {
+    position: absolute;
+    background: url('/images/kernel-pending-mid.gif');
+    left: 6px;
+    right: 34px;
+    height: 24px;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.dummyDiv .right {
+    position: absolute;
+    background: url('/images/kernel-pending-right.gif');
+    height: 24px;
+    width: 34px;
+    right: 0px;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.dummyNoteDiv {
+    position: absolute;
+    width: 15%;
+    height: 15%;
+}
+
+.dummyNoteDiv .left {
+    position: absolute;
+    background: url('/images/note-pending-left.gif');
+    left: 0px;
+    top: 0px;
+    width: 7px;
+    height: 11px;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.dummyNoteDiv .mid {
+    position: absolute;
+    background: url('/images/note-pending-mid.gif');
+    left: 7px;
+    right: 6px;
+    height: 11px;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.dummyNoteDiv .right {
+    position: absolute;
+    background: url('/images/note-pending-right.gif');
+    height: 11px;
+    width: 6px;
+    right: 0px;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.dummyNoteDiv .body {
+    position: absolute;
+    top: 10px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    border: 1px solid #8E8E8E
+}
+
+.dummyNoteDiv .corner {
+    position: absolute;
+    background: url('/images/note-pending-corner.gif');
+    height: 10px;
+    width: 10px;
+    right: 3px;
+    bottom: 3px;
+}
+
+/* main layout styles */
+
+#sidebar {
+    position: relative;
+    margin-left: 5px;
+    width: 192px;
+    float: left;
+    height: 100%;
+}
+
+
+#root {
+    height: 100%; width: 75%;
+	background-color: #ccf;
+	text-align: center;
+}
+
+/* sidebar content */
+
+#mysearchfield.focus {
+    background-color: #c4ebff; color: #333;
+}
+
+.searchresults {
+    position:absolute;
+    width: 400px;
+    border: 1px solid black;
+    background: white;
+    z-index:100;
+}
+
+.searchresults ul {
+  margin:0;
+  padding:0;
+  width:100%;
+  list-style-type:none;
+}
+
+.searchresults ul li {
+  margin:0;
+  padding:3px;
+}
+
+.searchresults ul li.selected { 
+  background-color: #ffb; 
+}
+
+.searchresults ul strong.highlight { 
+  color: #800; 
+  margin:0;
+  padding:0;
+}
+
+#searchindicator {
+  font-weight: bold;
+}
+
+.panetitle {
+    height: 20px; width: 100%; /* width not specified */
+    line-height: 20px;
+    
+    margin: 0; padding: 0;
+
+    color: #999;
+    font-family: Verdana; font-size: 12px; font-weight: bold;
+    background: url(/images/menupane_back.gif) repeat-x;
+}
+.nobutton {
+    cursor: default;
+    background: transparent;
+}
+
+#parents_content.open {
+    height: 300px; 
+}
+
+#rel_content.open {
+    padding: 10px;
+}
+
+#sandbox {
+    width: 100%; height: 100%;
+    position: relative;
+}
+
+.kernelthumbnail {
+    position: relative;
+    width: 160px;
+    height: 140px;
+    margin: 5px;
+}
+
+.kernelthumbnail .relationshipLabel {
+    font-size: 8px;
+    height: 15px;
+}
+
+.kernelthumbnail .namelink {
+    left: 5px;
+}
+
+/* XXX this will need to change when we get the sidebar scalable */
+.kernelthumbnail .vkernel-mid-leftbackground {
+    width: 121px;
+}
+
+/* interface */
+
+#permanent_delete {
+    position:absolute;
+    width: 21em;
+    height: 25px;
+    right: 8px;
+    top: 73px;
+    background: white;
+    border: 1px solid black;
+}
+
+.popover {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 420px;
+    height: 400px;
+    border: 1px solid black;
+    background: white;
+    z-index: 100;
+}
+
+* {
+    -moz-box-sizing: border-box;
+}
+
+td{
+    position: relative;
+}
+table.interface {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: 0px solid black;
+    padding: 0px;
+    z-index: 0;
+}
+
+.interface td {
+}
+
+td.header {
+    height: 70px;
+    padding: 0px;
+    margin: 0px;
+    z-index: 0;
+}
+
+div.header {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+td.sidebar {
+    width: 200px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+div.sidebar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+td.divider {
+    width: 5px;
+    cursor: e-resize;
+}
+
+.logo {
+    background: url('/images/logo-n.png');
+    width: 72px;
+    height: 64px;
+    float: left;
+    margin-bottom: 5px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.tab {
+    margin-left: 320px;
+    height: 48px;
+    position: relative;
+    right: 5px;
+    bottom: 0px;
+    height: 70px;
+    z-index: 0;
+}
+
+.tab .left{
+    position: absolute;
+    background: url('/images/tab-left.png');
+    width: 45px;
+    height: 48px;
+    bottom: 0px;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.tab .mid{
+    background: url('/images/tab-mid.png') bottom repeat-x ;
+    margin-left: 45px;
+    margin-right: 24px;
+    height: 70px;
+    bottom: 0px;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.tab .right{
+    background: url('/images/tab-right.png');
+    width: 24px;
+    height: 48px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.tablinks {
+    position: absolute;
+    left: auto;
+    right: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    top: 23px;
+    z-index: 10;
+    height: 47px;
+}
+
+.tablinks a,
+.tablinks a:visited {
+    color: black;
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.dot {
+    width: 3px;
+    height: 3px;
+    background: url('/images/dot.png') center center no-repeat;
+}
+
+.kernelview .links {
+    position: absolute;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    left: 90px;
+    z-index: 1000;
+}
+
+.links a,
+.links a:visited {
+    color: black;
+    font-family: sans-serif;
+    font-size: 13px;
+}
+
+div.search {
+    font-family: sans-serif;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.kernelview div.search {
+    margin-top: 30px;
+    float: left;
+}
+
+div.search input {
+    padding: 2px;
+    border: 1px solid black;
+}
+
+.top-sidebar-header {
+    position: relative;
+    width: 100%;
+    height: 25px;
+}
+
+.top-sidebar-header .left {
+    position: absolute;
+    height: 25px;
+    width: 15px;
+    background: url('/images/sidebar-top-left.png') no-repeat;
+    top: 0px;
+    left: 0px;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.top-sidebar-header .mid {
+    position: absolute;
+    height: 25px;
+    width: 170px;
+    background: url('/images/sidebar-top-mid.png');
+    left: 15px;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.top-sidebar-header .right {
+    position: absolute;
+    height: 25px;
+    width: 15px;
+    right: 0px;
+    top: 0px;
+    background: url('/images/sidebar-top-right.png') no-repeat;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false);
+}
+
+.top-sidebar-header .label {
+    z-index: 10;
+    position: absolute;
+    left: 20px;
+    top: 5px;
+}
+
+.sidebar-header {
+    border: 1px solid #989898;
+    width: 100%;
+    height: 23px;
+    background: url('/images/sidebar-mid-mid.png');
+    cursor: s-resize;
+}
+
+.sidebar-header .label {
+    margin-top: 2px;
+    margin-left: 18px;
+}
+
+.sidebar-header .spinner {
+    float: left;
+    background: url('/images/sidebar-spinner-vert.png') no-repeat;
+    height: 6px;
+    width: 11px;
+    margin: 5px;
+    margin-top: 7px;
+    z-index: 50;
+    cursor: default;
+}
+
+.top-sidebar-header .spinner {
+    position: absolute;
+    background: url('/images/sidebar-spinner-vert.png') no-repeat;
+    height: 6px;
+    width: 11px;
+    z-index: 5;
+    top: 10px;
+    left: 7px;
+    cursor: default;
+}
+
+.sidebar-header .spinner-closed,
+.top-sidebar-header .spinner-closed {
+    background: url('/images/sidebar-spinner-horiz.png') no-repeat;
+    width: 6px;
+    height: 11px;
+}
+
+.sidebar-header .spinner-closed {
+    margin-left: 9px;
+    margin-right: 1px;
+}
+.top-sidebar-header .spinner-closed {
+    top: 8px;
+    left: 10px;
+}
+
+
+.sidebar-content {
+    border-left: 1px solid #989898;
+    border-right: 1px solid #989898;
+    padding: 5px;
+    background: white;
+    height: 100px; 
+    overflow: auto;
+}
+
+.sidebar-content-closed {
+    display: none;
+    height: 0px;
+}
+
+
+.bottomcorners {
+    position: relative;
+    height: 1px;;
+    width: 100%;
+    top: -1px;
+}
+
+tr.sidebar-bottom,
+tr.sidebar-bottom td {
+    height: 100%;
+    position: relative;
+    border-bottom: 1px solid #989898;
+    border-left: 1px solid #989898;
+    border-right: 1px solid #989898;
+    padding: 5px;
+    background: white;
+}
+
+td.content {
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.topleft {
+    background: url('/images/content-up-left.png');
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: 8px;
+    top: 0px;
+    font-size: 1px;
+}
+.bottomleft {
+    background: url('/images/content-bottom-left.png') no-repeat;
+    width: 14px;
+    height: 15px;
+    position: absolute;
+    left: 8px;
+    bottom: 0px;
+    font-size: 1px;
+}
+.bottomright {
+    background: url('/images/content-bottom-right.png') no-repeat;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: 5px;
+    bottom: 0px;
+    font-size: 1px;
+}
+
+#sidebar .bottomleft {
+    left: 0px;
+    bottom: 0px;
+}
+#sidebar .bottomright {
+    right: 0px;
+    bottom: 0px;
+}
+
+* html .bottomright {
+    right: 4px;
+}
+
+div.content {
+    position: relative;
+    height:100%;
+    overflow: hidden;
+    margin-left: 0px;
+}
+
+div.headerleft {
+    float: left;
+    z-index: 1000;
+}
+
+.canvas {
+    margin-left: 8px;
+    margin-right: 5px;
+    background: white;
+    border: 1px solid #989898;
+    height: 100%;
+}
+
+table.sidebar {
+    width: 100%; height: 100%;
+    margin: 0; padding: 0;
+    border: 0;
+    vertical-align: top;
+}
+
+#viewname {
+    font-size: 30px;
+    color: white;
+    background: none;
+    border: none;
+    position: absolute;
+    left: 50px;
+    bottom: 5px;
+    width: 320px;
+    text-align: left;
+}
+
+#saving_indicator {
+    font-weight: bold;
+    z-index: 100;
+    position: absolute;
+    right: 20px;
+    top: 0px;
+}
+
+.resultsbar {
+    background: url('/images/sidebar-mid-mid.png');
+    height: 23px;
+    text-align: right;
+    border-top: 1px solid #999;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+body.search {
+	padding-right: 20px; 
+	padding-left: 20px; 
+        overflow: auto;
+}
+
+.pagenumbers {
+    text-align: center;
+}
+
+span.parents {
+    padding-left: 2em;
+}
+
+body.search .searchresultslist a,
+body.search .searchresultslist a:visited {
+    color: black;
+}
+
+.message {
+    color: red;
+    font-weight: bold;
+}
+
+#footer {
+    height: 10px;
+}
+
+#selectbox {
+    position: absolute;
+    border: 1px solid black;
+    background: #CCC;
+    opacity: .2;
+    filter: alpha(opacity=20);
+    z-index: 100;
+    font-size: 1px;
+}
+
+#start_using_notewise,
+#start_using_notewise:visited {
+    position: absolute;
+    border: none;
+    left: 60%;
+    top: 3px;
+    z-index: 100;
+}
+
+#start_using_notewise img {
+    border: none;
+}
+
+#register,
+#register:visited {
+    position: absolute;
+    border: none;
+    left: 60%;
+    top: 3px;
+    z-index: 100;
+}
+
+#register img {
+    border: none;
+}

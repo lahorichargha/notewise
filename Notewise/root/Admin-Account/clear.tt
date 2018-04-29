@@ -1,0 +1,29 @@
+[% INCLUDE 'Admin/header.tt' %]
+
+<style>
+    table, td, th {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+        margin: 5px;
+    }
+</style>
+Are you sure you want to clear this account?
+<a href="[%base%]admin/account/do_clear/[%user.id%]">yes</a>
+<a href="[%base%]admin/account/list">no</a><br/>
+<table>
+    <tr>
+        <td>Username:</td>
+        <td>[% user.username %]</td>
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <td>[% user.name %]</td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>[% user.email %]</td>
+    </tr>
+</table>
+
+[% INCLUDE 'Admin/footer.tt' %]

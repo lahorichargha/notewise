@@ -1,0 +1,34 @@
+To run notewise:
+
+  Checkout from svn:
+
+    svn co https://notewise.googlecode.com/svn/trunk/ notewise
+
+  Build:
+    perl Makefile.PL
+    make
+    
+  Create a new mysql database:
+
+    mysql -uroot -p -e 'create database notewise'
+
+  Import the database schema:
+
+    mysql -uroot -p notewise < schema/base_schema.sql
+
+  Create a test user and starting kernel:
+    scripts/create_user.pl
+
+  Copy config/config-sample.yml to config/config.yml and edit as appropriate.
+
+          set Static to 1
+          set Debug to 1
+          set BaseUrl to /
+
+  Run 'scripts/notewise_server.pl -k -r' to test the application.  The default port number is 3000.  To change the port number, use 'scripts/notewise_server.pl -k -r -p 3005'.
+
+
+To run the command line unit tests, do:
+
+    perl Makefile.PL
+    make test

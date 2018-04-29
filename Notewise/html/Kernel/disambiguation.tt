@@ -1,0 +1,13 @@
+There are multiple kernels with that name.<br/>
+Did you want:
+<ul>
+    [% FOR kernel = kernels %]
+    <li>
+        <a href="[%base _ kernel.relative_url%]">[%kernel.name != '' ? kernel.name : 'unnamed'%]</a>
+        (on views 
+        [% FOR parent = kernel.parents %]
+            [%parent.name != '' ? parent.name : 'unnamed'%], 
+        [% END %])
+    </li>
+    [%END%]
+</ul>

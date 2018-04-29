@@ -1,0 +1,56 @@
+<ul>
+<li><a href="/0">new '[%c.req.params.s%]'</a></li>
+[%- search = c.req.params.s -%]
+[%- FOR object = objects -%]
+    [%- PERL %]
+        $stash->set(type=>ref $stash->get('object'));
+    [%-END-%]
+    [%- IF type.match('Kernel$') -%]
+        [%- PERL %]
+            my $search = $stash->get('search');
+            my $object = $stash->get('object');
+            if($object->name =~ /$search/i){
+                $stash->set(prematch=>$`);
+                $stash->set(match=>$&);
+                $stash->set(postmatch=>$');
+            }
+        [% END -%]
+        <li><a href="[%base _ object.full_url%]">[%prematch%]<b>[%match%]</b>[%postmatch%]</a></li>
+    [%- END -%]
+    [%- IF type.match('Note$') -%]
+        [%- PERL %]
+            my $search = $stash->get('search');
+            my $object = $stash->get('object');
+            if($object->content =~ /$search/i){
+                my @pre_words = split / /,$`;
+                my $prematch;
+                if(@pre_words > 2){
+                    $prematch = join ' ',@pre_words[-2..-1];
+                    $prematch = '...' . $prematch . ' ';
+                } else {
+                    $prematch = join(' ',@pre_words) . ' ';
+                }
+
+                my @post_words = split / /,$';
+                my $postmatch;
+                if(@post_words > 2){
+                    $postmatch = join ' ',@post_words[0..2];
+                    $postmatch = $postmatch . '...';
+                } else {
+                    $postmatch = join(' ',@post_words[0..2]) . ' ';
+                }
+
+                $stash->set(prematch=>$prematch);
+                $stash->set(match=>$&);
+                $stash->set(postmatch=>$postmatch);
+            }
+        [% END -%]
+        <li><a href="[%base _ object.kernel.relative_url%]">
+            [%-object.kernel.name%] : ([%prematch%]<b>[%match%]</b>[%postmatch-%])
+        </a></li>
+    [%- END -%]
+[%- END -%]
+[% IF more_results %]
+    <li><a href="[%base%]search?s=[%c.req.params.s%]">more results...</a></li>
+[% END %]
+</ul>

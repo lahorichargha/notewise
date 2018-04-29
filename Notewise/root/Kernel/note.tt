@@ -1,0 +1,26 @@
+[% i = i + 1%]
+[% id = note.id %]
+<div id="note[%id%]" class="note note-notselected"
+     style="left: [% note.x %]%; top: [% note.y %]%;
+            width: [% note.width %]%; height: [% note.height %]%;">
+    
+    <div class="note-left"></div>
+    <div class="note-mid"></div>
+    <div class="note-right"></div>
+    <div class="relationshiphalo">
+        <div class="newrelationshiparrow"></div>
+        <div class="halo-top-left"></div>
+        <div class="halo-top"></div>
+        <div class="halo-top-right"></div>
+        <div class="halo-left"></div>
+        <div class="halo-right"></div>
+        <div class="halo-bottom-left"></div>
+        <div class="halo-bottom"></div>
+        <div class="halo-bottom-right"></div>
+    </div>
+    <a title="Delete note" class='removebutton'></a>
+    <div class="bodycontainer">
+        <textarea class='notebody'>[% note.content %]</textarea>
+        <div class="corner"></div>
+    </div>
+</div>

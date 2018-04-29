@@ -1,0 +1,12 @@
+var object1=objectCache['[%kernel.id%]/[%relationship.part1.id%]'];
+var object2=objectCache['[%kernel.id%]/[%relationship.part2.id%]'];
+if(object1 && object2){
+    var relationship = new Relationship([%relationship.id%],
+                                        [%relationship.part1.id%],
+                                        [%relationship.part2.id%],
+                                        "[%relationship.type.relationship_type | replace('"','&quot;')%]",
+                                        '[%relationship.nav%]');
+    relationship.realize([%kernel.id%]);
+} else {
+    alert("couldn't find the right objects to create the relationship for [%kernel.id%]/[%relationship.part1.id%] to [%kernel.id%]/[%relationship.part2.id%]");
+}

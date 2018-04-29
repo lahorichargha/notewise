@@ -1,0 +1,21 @@
+<html>
+<head>
+    <style>
+        input {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<p>Thanks for registering.  Your information will now be saved.</p>
+<input type="button" value="Done" onclick="parent.location='[%base _ last_kernel.relative_url%]'"/>
+[% IF c.config.AnalyticsId %]
+    <script type="text/javascript">
+        var pageTracker = _gat._getTracker("UA-4835321-1");
+        pageTracker._setDomainName("notewise.com");
+        pageTracker._initData();
+        pageTracker._trackPageview();
+    </script>
+[% END %]
+</body>
+</html>

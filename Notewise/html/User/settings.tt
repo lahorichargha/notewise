@@ -1,0 +1,31 @@
+[% INCLUDE 'header.tt' %]
+<style>
+    td {
+        text-align: right;
+        padding: 2px;
+    }
+</style>
+<br/>
+<div class="message">[%message%]</div>
+<h1>Change Password<h1>
+<form action="[%c.uri_for('/user/change_password')%]" method="POST">
+    <table border=0 cellpadding=0 cellspacing=0>
+        <tr>
+            <td>old password</td>
+            <td><input type="password" name="oldpassword"/></td>
+        </tr>
+        <tr>
+            <td>new password</td>
+            <td><input type="password" name="newpassword"/></td>
+        </tr>
+        <tr>
+            <td>new password again</td>
+            <td><input type="password" name="newpasswordagain"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align: left">
+                <input type="submit" value="Change Password"/>
+            </td>
+    </table>
+</form>

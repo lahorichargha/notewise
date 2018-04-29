@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <script src="../js/prototype.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/expandingtextfield.js"></script>
+    <script language="JavaScript" type="text/javascript" src="jsunit/app/jsUnitCore.js"></script>
+    <style>
+      #namefield {
+        position: absolute;
+        width: 100px;
+        text-align: center;
+        border-width: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type=text id="namefield">
+    <script>
+      var namefield;
+
+      setUp();
+
+      function setUp() {
+        namefield = new ExpandingTextField($('namefield'));
+      }
+
+      function testGetWidth() {
+        console.log(1);
+        document.getElementById('namefield').style.position = "absolute";
+        document.getElementById('namefield').style.width = "150px";
+        assertEquals(namefield.getWidth(), 150);
+      }
+
+      function testResizeListeners() {
+        console.log(2);
+        var was_called = 0;
+        namefield.registerResizeListener(function() {was_called = 1;});
+        namefield.__notifyResizeListeners(10);
+        assertEquals(1, was_called);
+      }
+
+      function testGetContentWidthEmpty() {
+        console.log(3);
+        assertEquals(20, namefield.__getContentWidth());
+      }
+
+      function testGetContentWidthMinWidthSet() {
+        console.log(4);
+        namefield = new ExpandingTextField($('namefield'), {min_width: 40});
+        assertEquals(40, namefield.__getContentWidth());
+        namefield.value='a';
+        assertEquals(40, namefield.__getContentWidth());
+      }
+
+      function testGetContentWidthNotMinWidth() {
+        console.log(5);
+        try {
+          $('namefield').value='foobar';
+          assertEquals(60, namefield.__getContentWidth());
+        } finally {
+          $('namefield').value='';
+        }
+      }
+    </script>
+  </body>
+</html>

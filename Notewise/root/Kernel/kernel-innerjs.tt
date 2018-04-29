@@ -1,0 +1,13 @@
+[% j = i + 1 %]
+[% IF j <= max_depth %]
+    [% FOR vkernel = kernel.contained_objects %]
+        [%INCLUDE 'Kernel/kernel-js.tt' i=j%]
+    [% END %]
+    [% FOR note = kernel.notes %]
+        [%INCLUDE 'Kernel/note-js.tt' %]
+    [% END %]
+
+    [% FOR relationship = kernel.visible_relationships %]
+        [%INCLUDE 'Kernel/relationship.tt'%]
+    [%END%]
+[% END %]

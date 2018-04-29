@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <style>
+            .content {
+                background: #909090;
+            }
+            table {
+                width: 200px;
+                height: 200px;
+            }
+            .top {
+                background: url('borders/node-top.png') no-repeat top left;
+                height: 4px;
+            }
+            .topend {
+                background: url('borders/node-topend.png') no-repeat top right;
+                height: 4px;
+                width: 7px;
+            }
+            .left {
+                background: url('borders/node-left.png') no-repeat left top;
+                width: 4px;
+            }
+            .right {
+                background: url('borders/node-right.png') no-repeat left top;
+                width: 5px;
+            }
+            .leftend {
+                background: url('borders/node-leftend.png') no-repeat top left;
+                width: 4px;
+                height: 6px;
+            }
+            .rightend {
+                background: url('borders/node-rightend.png') no-repeat left;
+            }
+            .bottom {
+                background: url('borders/node-bottom.png') no-repeat top left;
+                height: 4px;
+            }
+            .bottomend {
+                background: url('borders/node-bottomend.png') no-repeat;
+                height: 4px;
+            }
+            div.outer {
+                border: 1px solid red;
+                float: left;
+            }
+            div {
+            overflow: hidden;
+            }
+            div div {
+                border: 1px solid red;
+                float: left;
+            }
+            div.top {
+                width: 200px;
+            }
+            div.left {
+                clear:left;
+                width: 4px;
+            }
+            div.content{
+                width: 205px;
+            }
+            div.leftend {
+                clear:left;
+            }
+            div.bottom {
+                clear:left;
+                width:200px;
+            }
+            div.bottomend {
+                width: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <table border=0 cellpadding=0 cellspacing=0>
+            <tr>
+                <td class="top" colspan=2></td>
+                <td class="topend"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class=left></td>
+                <td class="content" colspan=2 rowspan=2>This is a test</td>
+                <td class="right"></td>
+            </tr>
+            <tr>
+                <td class="leftend"></td>
+                <td class="rightend"></td>
+            </tr>
+            <tr>
+                <td class="bottom" colspan=2></td>
+                <td class="bottomend"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="outer">
+            <div class="top"></div>
+            <div class="topend"></div>
+            <div class="left"></div>
+            <div class="content">This is another test</div>
+            <div class="right"></div>
+            <div class="leftend"></div>
+            <div style="width: 200px;"></div>
+            <div class="rightend"></div>
+            <div class="bottom"></div>
+            <div class="bottomend"></div>
+        </div>
+    </body>
+</html>

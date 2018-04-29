@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <script src="../../jsunit/app/jsUnitCore.js"></script>
+    <script src="../prototype.js"></script>
+    <script src="../utils.js"></script>
+    <script src="../test_utils.js"></script>
+    <script src="../jsdbi.js"></script>
+  </head>
+  <body>
+    <script>
+      var Flower = Class.create();
+      Flower.extend(JSDBI);
+      Flower.prototype = (new JSDBI()).extend( {
+      });
+      Flower.fields(['id', 'name']);
+      Flower.url('/rest/flower');
+
+      Ajax.Request = AjaxRequestStub;
+      function setUp() {
+        AjaxRequestStub.clear();
+      }
+      
+      function testStub() {
+        var request = new Ajax.Request('/flowers');
+        assertEquals("/flowers", request.requested_url);
+        assertEquals(1, request.request_called_count);
+      }
+
+      function testStubAsynchronousShouldntCallOnSuccessImmediately() {
+        var on_success_called = false;
+        var request = new Ajax.Request('/flowers',
+                                       {method: 'put',
+                                        parameters: {},
+                                        onSuccess: function (options, transport) {
+                                          actual_options = options;
+                                          actual_transport = transport;
+                                          on_success_called = true;
+                                        },
+                                        asynchronous: true} );
+        assertFalse(on_success_called);
+      }
+
+      function testStubAsynchronousShouldCallOnSuccessWhenFireIsCalled() {
+        var actual_transport;
+        var on_success_called = false;
+        var request = new Ajax.Request('/flowers',
+                                       {method: 'put',
+                                        parameters: {},
+                                        onSuccess: function (transport) {
+                                          actual_transport = transport;
+                                          on_success_called = true;
+                                        },
+                                        asynchronous: true} );
+
+        request.setResponseXML('<response><foo id="42"></foo></response>');
+        request.fireOnSuccess();
+
+        assertTrue(on_success_called);
+        assertEquals("42", actual_transport.responseXML.firstChild.firstChild.getAttribute("id"));
+      }
+
+      function testCreate() {
+        var flower = new Flower();
+        flower.name('Daisy');
+        flower.insert();
+        assertEquals(1, AjaxRequestStub.requests.length);
+        assertEquals('/rest/flower', AjaxRequestStub.requests[0].requested_url);
+        assertEquals('put', AjaxRequestStub.requests[0].options.method);
+      }
+
+      function testAsynchronousCreateShouldOnlyIssueOneRequest() {
+        var flower = new Flower();
+        flower.name('Daisy');
+        flower.insert({asynchronous: true});
+        assertEquals(1, AjaxRequestStub.requests.length);
+        var request = AjaxRequestStub.requests[0];
+        assertEquals('/rest/flower', request.requested_url);
+        assertEquals('put', request.options.method);
+      }
+
+      function testAsynchronousCreateShouldProperlySetIdAndFields() {
+        var flower = new Flower();
+        flower.name('Daisy');
+        flower.insert({asynchronous: true});
+
+        var request = AjaxRequestStub.requests[0];
+        request.setResponseXML('<response><flower id="42" name="Daisy"></flower></response>');
+        request.fireOnSuccess();
+        assertEquals("42", flower.id());
+        assertEquals("Daisy", flower.name());
+      }
+
+      function testUpdateBeforeInsertFinishesShouldStillUpdateWhenInsertCompletes() {
+        var flower = new Flower();
+        flower.name('Rose');
+        flower.insert({asynchronous: true});
+        flower.name('Daisy');
+        flower.update();
+
+        var insert_request = AjaxRequestStub.requests[0];
+        assertEquals("name=Rose", insert_request.options.parameters);
+        insert_request.setResponseXML('<response><flower id="42" name="Rose"></flower></response>');
+        insert_request.fireOnSuccess();
+
+        assertEquals("42", flower.id());
+        assertEquals("Daisy", flower.name());
+
+        var update_request = AjaxRequestStub.requests[1];
+        assertEquals("id=42&name=Daisy", update_request.options.parameters);
+        update_request.setResponseXML('<response><flower id="42" name="Daisy"></flower></response>');
+        update_request.fireOnComplete();
+
+        assertEquals("42", flower.id());
+        assertEquals("Daisy", flower.name());
+      }
+    </script>
+  </body>
+</html>
